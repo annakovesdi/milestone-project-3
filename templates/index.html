@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div>
+    {% for recipy in recipes %}
+    
+        {{ recipy.recipy_name }}
+        {{ recipy.country }}
+        {{ recipy.ingredients }}
+        {{ recipy.description }}
+
+    {% endfor %}
+</div>
+
+{% endblock %}
