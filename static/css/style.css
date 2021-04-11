@@ -1,0 +1,15 @@
+nav ul li {
+    min-width: 30%;
+}
+
+ul.navbar-padding-left {
+    padding-left: 30%;
+}
+
+a.sidenav-trigger {
+    float: right;
+}    
+
+a.brand-logo {
+    padding-left: 15px;
+}    
