@@ -1,5 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&display=swap');
+
+
+/*-------------------------General*/
+
+body{
+    font-family: 'Open Sans', sans-serif;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+    margin-top: -55px;
+  }
+
+/*-------------------------Nav bar*/
+
+nav {
+    background-color: #993333;
+}
+
+
 nav ul li {
-    min-width: 30%;
+    min-width: 25%;
+    font-family: 'Amatic SC', cursive;
+    
+}
+
+nav ul a {
+    font-weight: 300;
+    font-size: 22px;
 }
 
 ul.navbar-padding-left {
@@ -12,4 +43,57 @@ a.sidenav-trigger {
 
 a.brand-logo {
     padding-left: 15px;
+    font-family: 'Amatic SC', cursive;
+    font-size: 30px;
+    font-weight: 400;
 }    
+
+.sidenav-overlay {
+    z-index: 996;
+}
+
+.sidenav.right-aligned {
+    padding-top: 30px;
+}  
+
+.sidenav li>a {
+    font-family: 'Amatic SC', cursive;
+    font-size: 22px;
+}  
+
+/*-------------------------Footer*/
+
+.page-footer {
+    padding-top: 0px;
+    color: #fff;
+    background-color:  #d27979;
+}
+
+/*-------------------------Main*/
+
+.hero-image {
+  height: 50%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+
+h1 {
+    padding-top: 2.5em;
+    padding-bottom: 2.5em;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+    font-size: 70px;
+    color: white;
+    font-family: 'Amatic SC', cursive;
+    text-shadow: 2px 2px 5px lightcoral;
+}
+
+/*-------------------------Index*/
+
+
+.index-image {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../img/citrus.jpg')
+}
