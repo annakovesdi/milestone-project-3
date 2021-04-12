@@ -13,31 +13,31 @@
         <div class="navbar-fixed row">
             <nav>
                 <div class="nav-wrapper">
-                    <a href="#!" class="brand-logo">Eating the World</a>
-                    <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                    <a href="{{ url_for('index') }}" class="brand-logo">Eating the World</a>
+                    <a href="{{ url_for('index') }}" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                     <ul class="navbar-padding-left hide-on-med-and-down">
-                        <li><a href="sass.html">Recipes</a></li>
-                        <li><a href="badges.html">Week Menu Shuffle</a></li>
+                        <li><a href="{{ url_for('recipes') }}">Recipes</a></li>
+                        <li><a href="{{ url_for('week_menu_shuffle') }}">Week Menu Shuffle</a></li>
                         {% if session.user %}
-                        <li><a href="mobile.html">My Profile</a></li>
-                        <li><a href="mobile.html">Add Recipy</a></li>
-                        <li><a href="mobile.html">Log Out</a></li> 
+                        <li><a href="{{ url_for('profile') }}">My Profile</a></li>
+                        <li><a href="{{ url_for('add_recipy') }}">Add Recipy</a></li>
+                        <li><a href="{{ url_for('log_out') }}">Log Out</a></li> 
                         {% else %}
-                        <li><a href="collapsible.html">Log In/Sign Up</a></li>
+                        <li><a href="{{ url_for('log_in') }}">Log In/Sign Up</a></li>
                         {% endif %}
                     </ul>
                 </div>
             </nav>
 
             <ul class="sidenav" id="mobile-demo">
-                <li><a href="sass.html">Recipes</a></li>
-                <li><a href="badges.html">Week Menu Shuffle</a></li>
+                <li><a href="{{ url_for('recipes') }}">Recipes</a></li>
+                <li><a href="{{ url_for('week_menu_shuffle') }}">Week Menu Shuffle</a></li>
                 {% if session.user %}
-                <li><a href="mobile.html">My Profile</a></li>
-                <li><a href="mobile.html">Add Recipy</a></li>
-                <li><a href="mobile.html">Log Out</a></li>
+                <li><a href="{{ url_for('profile') }}">My Profile</a></li>
+                <li><a href="{{ url_for('add_recipy') }}">Add Recipy</a></li>
+                <li><a href="{{ url_for('log_out') }}">Log Out</a></li>
                 {% else %}
-                <li><a href="collapsible.html">Log In/Sign Up</a></li>
+                <li><a href="{{ url_for('log_in') }}">Log In/Sign Up</a></li>
                 {% endif %}
             </ul>
 

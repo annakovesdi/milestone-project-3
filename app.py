@@ -19,9 +19,39 @@ mongo = PyMongo(app)
 @app.route("/")
 
 @app.route("/index")
-def home():
+def index():
     recipes = mongo.db.recipes.find()
     return render_template("index.html", recipes=recipes)
+
+
+@app.route("/recipes")
+def recipes():
+    return render_template("recipes.html")
+
+
+@app.route("/add_recipy")
+def add_recipy():
+    return render_template("add-recipy.html")
+
+
+@app.route("/log_in")
+def log_in():
+    return render_template("log-in.html")
+
+
+@app.route("/log_out")
+def log_out():
+    return render_template("log-out.html")
+
+
+@app.route("/profile")
+def profile():
+    return render_template("profile.html")
+
+
+@app.route("/week_menu_shuffle")
+def week_menu_shuffle():
+    return render_template("week-menu-shuffle.html")
 
 
 if __name__ == "__main__":

@@ -86,9 +86,24 @@ h1 {
     padding-left: 1.5em;
     padding-right: 1.5em;
     font-size: 70px;
+    text-align: center;   
+}
+
+h2 {
+    font-size: 50px;
+    color: #990000;
+    padding: 30px;
+    font-family: 'Amatic SC', cursive;
+}
+
+.hero-text {
     color: white;
     font-family: 'Amatic SC', cursive;
     text-shadow: 2px 2px 5px lightcoral;
+}
+
+p {
+    font-family: 'Open Sans', sans-serif;
 }
 
 /*-------------------------Index*/
