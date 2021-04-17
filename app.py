@@ -1,6 +1,6 @@
 import os
 from flask import (
-    Flask, flash, render_template, redirect, request, session, url_for)
+    Flask, flash, render_template, redirect, request, session, url_for, jsonify)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 if os.path.exists("env.py"):
@@ -17,7 +17,6 @@ mongo = PyMongo(app)
 
 
 @app.route("/")
-
 @app.route("/index")
 def index():
     recipes = mongo.db.recipes.find()
@@ -27,6 +26,13 @@ def index():
 @app.route("/recipes")
 def recipes():
     return render_template("recipes.html")
+
+
+@app.route("/api/recipes")
+def api_recipes():
+    recipes = mongo.db.recipes.find()
+    print(recipes)
+    return jsonify(recipes=recipes)
 
 
 @app.route("/add_recipy")
@@ -52,6 +58,12 @@ def profile():
 @app.route("/week_menu_shuffle")
 def week_menu_shuffle():
     return render_template("week-menu-shuffle.html")
+
+
+@app.route("/recipy")
+def recipy():
+    return render_template("recipy.html")
+
 
 
 if __name__ == "__main__":

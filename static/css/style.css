@@ -15,6 +15,23 @@ main {
     margin-top: -55px;
   }
 
+
+.row {
+    margin-bottom: 0;
+}
+
+.material-icons {
+    color: #990000;
+}
+
+.margin-bottom {
+    margin-bottom: 70px;
+}
+
+button.submit-button:hover {
+    background-color: #ff9900;
+}
+
 /*-------------------------Nav bar*/
 
 nav {
@@ -111,4 +128,21 @@ p {
 
 .index-image {
     background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../img/citrus.jpg')
+}
+
+/*-------------------------Log in/Sign up*/
+
+.form-card-parent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.form-card {
+    min-width: 70%;
+}
+
+.submit-button {
+    background-color: #d27979;
 }

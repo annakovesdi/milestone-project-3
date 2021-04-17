@@ -1,8 +1,85 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h2>Log in</h2>
+<!--Sign In-->>
+<div class="col s12 m7">
+    <h2 class="header center">Log In</h2>
+    <div class="form-card-parent">
+        <div class="card horizontal form-card">
+            <div class="card-stacked">
+                <div class="card-content">
+                    <div class="row">
+                        <form class="col s12">
+                            <div class="row">
+                                <div class="input-field col s12 m6">
+                                    <i class="material-icons prefix">account_circle</i>
+                                    <input id="icon_prefix" type="text" class="validate">
+                                    <label for="icon_prefix">Username</label>
+                                </div>
+                                <div class="input-field col s12 m6">
+                                    <i class="material-icons prefix">lock_open</i>
+                                    <input id="icon_telephone" type="tel" class="validate">
+                                    <label for="icon_telephone">Password</label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="card-action center">
+                    <button class="btn waves-effect waves-light submit-button" type="submit" name="action">Log In
+                        <i class="material-icons right">send</i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Sign Up-->
+<div class="col s12 m7">
+    <h2 class="header center">Sign Up</h2>
+    <div class="form-card-parent">
+        <div class="card horizontal form-card">
+            <div class="card-stacked">
+                <div class="card-content">
+                    <div class="row">
+                        <form class="col s12">
+                            <div class="row">
+                                <div class="input-field col s12 m6">
+                                    <i class="material-icons prefix">face</i>
+                                    <input id="name" type="text" class="validate">
+                                    <label for="icon_prefix">Name</label>
+                                </div>
+                                <div class="input-field col s12 m6">
+                                    <i class="material-icons prefix">account_circle</i>
+                                    <input id="icon_telephone" type="tel" class="validate">
+                                    <label for="icon_telephone">Username</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12 m6">
+                                    <i class="material-icons prefix">email</i>
+                                    <input id="icon_prefix" type="text" class="validate">
+                                    <label for="icon_prefix">Email Address</label>
+                                </div>
+                                <div class="input-field col s12 m6">
+                                    <i class="material-icons prefix">lock_open</i>
+                                    <input id="icon_telephone" type="tel" class="validate">
+                                    <label for="icon_telephone">Password</label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="card-action center">
+                    <button class="btn waves-effect waves-light submit-button" type="submit" name="action">Sign Up
+                        <i class="material-icons right">send</i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br class="margin-bottom">
+</div>
 
-<h2>Sign Up</h2>
 
 {% endblock %}
