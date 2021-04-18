@@ -25,7 +25,19 @@ def index():
 
 @app.route("/recipes")
 def recipes():
-    return render_template("recipes.html", page_title="Recipes")
+    recipes = mongo.db.recipes.find()
+    return render_template(
+        "recipes.html", page_title="Recipes", recipes=recipes)
+
+
+@app.route("/recipes/<recipy_name>")
+def recipy_page(recipy_name):
+    this_recipy = {}
+    recipes = mongo.db.recipes.find()
+    for recipy in recipes:
+        if recipy["url"] == recipy_name:
+            this_recipy = recipy
+    return render_template("recipy.html", recipy=this_recipy)
 
 
 @app.route("/api/recipes")
@@ -42,7 +54,8 @@ def add_recipy():
 
 @app.route("/log_in")
 def log_in():
-    return render_template("log-in.html", page_title="Log In", page_title_two="Sign Up")
+    return render_template(
+        "log-in.html", page_title="Log In", page_title_two="Sign Up")
 
 
 @app.route("/log_out")
@@ -57,13 +70,13 @@ def profile():
 
 @app.route("/week_menu_shuffle")
 def week_menu_shuffle():
-    return render_template("week-menu-shuffle.html", page_title="Week Menu Shuffle")
+    return render_template(
+        "week-menu-shuffle.html", page_title="Week Menu Shuffle")
 
 
 @app.route("/recipy")
 def recipy():
     return render_template("recipy.html", page_title="recipy")
-
 
 
 if __name__ == "__main__":

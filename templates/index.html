@@ -18,15 +18,15 @@
             <div class="card">
                 <div class="card-image">
                     <img src="{{ recipy.image_url }}">
-                    <a class="btn-floating halfway-fab waves-effect waves-light red" href="#"><i
+                    <a class="btn-floating halfway-fab waves-effect waves-light red" href="/recipes/{{recipy.url}}"><i
                             class="material-icons">add</i></a>
                 </div>
                 <div class="card-content">
                     <span class="card-title">
-                        {{ recipy.recipy_name }}
+                        {{ recipy.recipy_name|title }}
                     </span>
                     <p>
-                        Country: {{ recipy.country }}
+                        Country: {{ recipy.country|title }}
                     </p>
                 </div>
             </div>
