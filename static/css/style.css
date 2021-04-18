@@ -199,7 +199,6 @@ h2.center {
 div#ingredients,
 div#description {
     min-height: 100px;
-    overflow: scroll;
 }
 
 .card-image-recipy-page {
@@ -211,15 +210,31 @@ div#description {
     margin: auto;
 }
 
+div.card-content.grey.lighten-4 {
+    overflow: scroll;
+}
+
+.enjoy {
+    margin-top: 550px;
+}
+
+/*-------------------------Media Query*/
 
 @media only screen and (min-width: 768px) {
     .recipy-card {
         max-width: 70%;
     }
+    .enjoy {
+    margin-top: 400px;
+    }
+    
 }
 
 @media only screen and (min-width: 992px) {
     .recipy-card {
         max-width: 60%;
+    }
+    .enjoy {
+    margin-top: 300px;
     }
 }
