@@ -146,3 +146,11 @@ p {
 .submit-button {
     background-color: #d27979;
 }
+
+
+/*-------------------------Week Menu Shuffle*/
+
+
+input#country {
+    max-width: max-content;
+}
