@@ -25,7 +25,7 @@ def index():
 
 @app.route("/recipes")
 def recipes():
-    return render_template("recipes.html")
+    return render_template("recipes.html", page_title="Recipes")
 
 
 @app.route("/api/recipes")
@@ -37,32 +37,32 @@ def api_recipes():
 
 @app.route("/add_recipy")
 def add_recipy():
-    return render_template("add-recipy.html")
+    return render_template("add-recipy.html", page_title="Add Recipy")
 
 
 @app.route("/log_in")
 def log_in():
-    return render_template("log-in.html")
+    return render_template("log-in.html", page_title="Log In", page_title_two="Sign Up")
 
 
 @app.route("/log_out")
 def log_out():
-    return render_template("log-out.html")
+    return render_template("log-out.html", page_title="Log Out")
 
 
 @app.route("/profile")
 def profile():
-    return render_template("profile.html")
+    return render_template("profile.html", page_title="Log Out")
 
 
 @app.route("/week_menu_shuffle")
 def week_menu_shuffle():
-    return render_template("week-menu-shuffle.html")
+    return render_template("week-menu-shuffle.html", page_title="Week Menu Shuffle")
 
 
 @app.route("/recipy")
 def recipy():
-    return render_template("recipy.html")
+    return render_template("recipy.html", page_title="recipy")
 
 
 
