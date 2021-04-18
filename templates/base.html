@@ -16,7 +16,7 @@
             <nav>
                 <div class="nav-wrapper">
                     <a href="{{ url_for('index') }}" class="brand-logo">Eating the World</a>
-                    <a href="{{ url_for('index') }}" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                    <a href="{{ url_for('index') }}" data-target="mobile" class="sidenav-trigger"><i class="material-icons menu-icon">menu</i></a>
                     <ul class="navbar-padding-left hide-on-med-and-down">
                         <li><a href="{{ url_for('recipes') }}">Recipes</a></li>
                         <li><a href="{{ url_for('week_menu_shuffle') }}">Week Menu Shuffle</a></li>
@@ -31,7 +31,7 @@
                 </div>
             </nav>
 
-            <ul class="sidenav" id="mobile-demo">
+            <ul class="sidenav" id="mobile">
                 <li><a href="{{ url_for('recipes') }}">Recipes</a></li>
                 <li><a href="{{ url_for('week_menu_shuffle') }}">Week Menu Shuffle</a></li>
                 {% if session.user %}

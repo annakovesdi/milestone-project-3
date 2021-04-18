@@ -12,7 +12,6 @@ body{
 
 main {
     flex: 1 0 auto;
-    margin-top: -55px;
   }
 
 
@@ -25,11 +24,23 @@ main {
 }
 
 .margin-bottom {
-    margin-bottom: 70px;
+    margin-bottom: 150px;
 }
 
 button.submit-button:hover {
     background-color: #ff9900;
+}
+
+li {
+    text-align: left;
+}
+
+.bold {
+    font-weight: 700;
+}
+
+hr {
+    border-top: 0.5px solid #d27979;
 }
 
 /*-------------------------Nav bar*/
@@ -76,7 +87,11 @@ a.brand-logo {
 .sidenav li>a {
     font-family: 'Amatic SC', cursive;
     font-size: 22px;
-}  
+}
+
+.menu-icon {
+    color: white;
+}
 
 /*-------------------------Footer*/
 
@@ -94,6 +109,7 @@ a.brand-logo {
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
+  margin-top: -55px;
 }
 
 
@@ -110,6 +126,13 @@ h2 {
     font-size: 50px;
     color: #990000;
     padding: 30px;
+    font-family: 'Amatic SC', cursive;
+}
+
+h3 {
+    font-size: 25px;
+    color: #ff9900;
+    padding: 5px;
     font-family: 'Amatic SC', cursive;
 }
 
@@ -160,4 +183,43 @@ div.card-image img{
 
 input#country {
     max-width: max-content;
+}
+
+/*-------------------------Recipes.html*/
+
+
+
+
+/*-------------------------Recipy.html*/
+
+h2.center {
+    margin: 0;
+}
+
+div#ingredients,
+div#description {
+    min-height: 100px;
+    overflow: scroll;
+}
+
+.card-image-recipy-page {
+    height: max-content;
+}
+
+.recipy-card {
+    max-width: 80%;
+    margin: auto;
+}
+
+
+@media only screen and (min-width: 768px) {
+    .recipy-card {
+        max-width: 70%;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .recipy-card {
+        max-width: 60%;
+    }
 }

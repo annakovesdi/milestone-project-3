@@ -1,28 +1,45 @@
 {% extends "base.html" %}
 {% block content %}
 
-<hr class="margin-bottom">
-<div class="container center">
-    
-      <div class="card">
-        <div class="card-image">
-          <img src="{{ recipy.image_url }}" alt="Image of the dish {{ recipy.name }}">
+<div class="recipy-card">
+        <div class="card medium">
+            <div class="card-image">
+                <img src="{{ recipy.image_url }}" alt="Image of the dish {{ recipy.name }}">
+            </div>
+            <div class="card-content">
+                <h2 class="center">{{ recipy.recipy_name|title }}</h2>
+                <p class="bold center">Country: {{ recipy.country|title }}</p>
+
+            </div>
+            <div class="card-tabs">
+                <ul class="tabs tabs-fixed-width">
+                    <li class="tab"><a href="#ingredients">Ingredients</a></li>
+                    <li class="tab"><a class="active" href="#description">Description</a></li>
+                </ul>
+            </div>
+            <div class="card-content grey lighten-4">
+                <div id="ingredients">
+                    <h3 class="bold">Ingredients</h3>
+                    <hr>
+                    <ul class="left">
+                        {% for ingredient in recipy.ingredients %}
+                        <li>-{{ ingredient }}</li>
+                        {% endfor %}
+                    </ul>
+
+                </div>
+                <div id="description">
+                    <h3 class="bold">Description</h3>
+                    <hr>
+                    <p class="left">{{ recipy.description }}</p>
+                </div>
+                <h3 class="bold center">Enjoy!</h3>
+                <div class="card-action center">
+                        <a href="{{ url_for('recipes') }}">Return to recipes</a>
+                </div>
+            </div>
         </div>
-        <div class="card-content">
-            <h2 class="center">{{ recipy.recipy_name|title }}</h2>
-            <p class="left">Country: {{ recipy.country|title }}</p>
-            <br>
-            <ul>
-                <li>{{ recipy.ingredients }}</li>
-            </ul>
-            <p class="left">{{ recipy.description }}</p>
-        </div>
-        <div class="card-action">
-          <a href="#">Return to recipes</a>
-        </div>
-      </div>
-   
-  </div>
-            
+
+    </div>
 
 {% endblock %}
