@@ -1,8 +1,10 @@
 import os
 from flask import (
-    Flask, flash, render_template, redirect, request, session, url_for, jsonify)
+    Flask, flash, render_template,
+    redirect, request, session, url_for, jsonify)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
+from werkzeug.security import generate_password_hash, check_password_hash
 if os.path.exists("env.py"):
     import env
 
@@ -52,10 +54,32 @@ def add_recipy():
     return render_template("add-recipy.html", page_title="Add Recipy")
 
 
-@app.route("/log_in")
+@app.route("/log_in", methods=["GET", "POST"])
 def log_in():
     return render_template(
-        "log-in.html", page_title="Log In", page_title_two="Sign Up")
+        "log-in.html", page_title="Log In")
+
+
+@app.route("/sign_up", methods=["GET", "POST"])
+def sign_up():
+    if request.method == "POST":
+        existing_user = mongo.db.users.find_one(
+            {"username": request.form.get("username").lower()})
+        if existing_user:
+            flash("Username already exists")
+            return redirect(url_for('log_in'))
+        register = {
+            "username": request.form.get("username").lower(),
+            "name": request.form.get("name").lower(),
+            "password": generate_password_hash(request.form.get("password")),
+            "email": request.form.get("email").lower()
+        }
+        mongo.db.users.insert_one(register)
+
+        session["user"] = request.form.get("username").lower()
+        flash("Registration Succesful!")
+    return render_template(
+        "sign-up.html", page_title="Sign Up")
 
 
 @app.route("/log_out")

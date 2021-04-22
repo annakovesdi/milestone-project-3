@@ -237,4 +237,8 @@ div.card-content.grey.lighten-4 {
     .enjoy {
     margin-top: 300px;
     }
+    div.form-card-parent {
+        max-width: 70%;
+        margin: auto;
+    }
 }
