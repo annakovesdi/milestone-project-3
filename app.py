@@ -65,6 +65,7 @@ def log_in():
                     existing_user["password"], request.form.get("password")):
                 session["user"] = request.form.get("username").lower()
                 flash("Welcome {}!".format(request.form.get("username")))
+                return redirect(url_for('profile', username=session["user"]))
             else:
                 flash("Username and/or password incorrect")
                 return redirect(url_for('log_in'))
@@ -96,7 +97,9 @@ def sign_up():
         mongo.db.users.insert_one(sign_up)
 
         session["user"] = request.form.get("new_username").lower()
-        flash("Registration Successful!")
+        flash("You are now signed up, welcome!")
+        return redirect(url_for('profile', username=session["user"]))
+
     return render_template("sign-up.html")
 
 
@@ -107,9 +110,12 @@ def log_out():
     return redirect(url_for("log_in"))
 
 
-@app.route("/profile")
-def profile():
-    return render_template("profile.html", page_title="Log Out")
+@app.route("/profile/<username>", methods=["GET", "POST"])
+def profile(username):
+    username = mongo.db.users.find_one(
+        {"username": session["user"]})["name"]
+    return render_template(
+        "profile.html", page_title="Log Out", username=username)
 
 
 @app.route("/week_menu_shuffle")

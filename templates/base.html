@@ -22,7 +22,7 @@
                         <li><a href="{{ url_for('recipes') }}">Recipes</a></li>
                         <li><a href="{{ url_for('week_menu_shuffle') }}">Week Menu Shuffle</a></li>
                         {% if session.user %}
-                        <li><a href="{{ url_for('profile') }}">My Profile</a></li>
+                        <li><a href="{{ url_for('profile', username=session['user']) }}">My Profile</a></li>
                         <li><a href="{{ url_for('add_recipy') }}">Add Recipy</a></li>
                         <li><a href="{{ url_for('log_out') }}">Log Out</a></li> 
                         {% else %}
@@ -37,7 +37,7 @@
                 <li><a href="{{ url_for('recipes') }}">Recipes</a></li>
                 <li><a href="{{ url_for('week_menu_shuffle') }}">Week Menu Shuffle</a></li>
                 {% if session.user %}
-                <li><a href="{{ url_for('profile') }}">My Profile</a></li>
+                <li><a href="{{ url_for('profile', username=session['user']) }}">My Profile</a></li>
                 <li><a href="{{ url_for('add_recipy') }}">Add Recipy</a></li>
                 <li><a href="{{ url_for('log_out') }}">Log Out</a></li>
                 {% else %}
