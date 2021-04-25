@@ -78,7 +78,7 @@ nav {
 
 
 nav ul li {
-    min-width: 25%;
+    min-width: 20%;
     font-family: 'Amatic SC', cursive;
     
 }
@@ -123,7 +123,16 @@ a.brand-logo {
 /*-------------------------Base*/
 
 .flashes {
+    margin-top: 100px;
     line-height: 2;
+}
+
+h4 {
+    font-size: 28px;
+    font-family: 'Open Sans', sans-serif;
+    color: #black;
+    text-transform: uppercase;
+    font-weight: 200;
 }
 
 /*-------------------------Footer*/

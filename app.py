@@ -56,6 +56,21 @@ def add_recipy():
 
 @app.route("/log_in", methods=["GET", "POST"])
 def log_in():
+    if request.method == "POST":
+        existing_user = mongo.db.users.find_one(
+            {"username": request.form.get("username").lower()})
+
+        if existing_user:
+            if check_password_hash(
+                    existing_user["password"], request.form.get("password")):
+                session["user"] = request.form.get("username").lower()
+                flash("Welcome {}!".format(request.form.get("username")))
+            else:
+                flash("Username and/or password incorrect")
+                return redirect(url_for('log_in'))
+        else:
+            flash("Username and/or password incorrect")
+            return redirect(url_for('log_in'))
     return render_template(
         "log-in.html", page_title="Log In")
 
@@ -87,7 +102,9 @@ def sign_up():
 
 @app.route("/log_out")
 def log_out():
-    return render_template("log-out.html", page_title="Log Out")
+    flash("You have been logged out")
+    session.pop("user")
+    return redirect(url_for("log_in"))
 
 
 @app.route("/profile")
