@@ -42,13 +42,22 @@
                     <p class="left">Country: {{ recipy.country }}</p><br>
                     <hr>
                     <p class="left"><em>Created by: {{ recipy.created_by }}</em></p>
-                </div>
-                <h3 class="bold center enjoy">Enjoy!</h3>
-                <div class="card-action center">
-                        <a href="{{ url_for('recipes') }}">Return to recipes</a>
-                </div>
+                    <br class="margin-bottom">
+                    <div class="row edit-delete-card">
+                            <div class="card transparent">
+                                <div class="card-content white-text center">
+                                    <a href="" class="waves-effect waves-light btn submit-button"><i class="material-icons left">create</i>Edit Recipy</a>
+                                    <a href="" class="waves-effect waves-light btn submit-button"><i class="material-icons left">delete</i>Delete Recipy</a>
+                                </div>
+                        </div>
+                    </div>
+            </div>
+            <h3 class="bold center enjoy">Enjoy!</h3>
+            <div class="card-action center">
+                <a href="{{ url_for('recipes') }}">Return to recipes</a>
             </div>
         </div>
+    </div>
 
     </div>
 
