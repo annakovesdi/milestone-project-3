@@ -43,6 +43,33 @@ hr {
     border-top: 0.5px solid #d27979;
 }
 
+h1 {
+    padding-top: 2.5em;
+    padding-bottom: 2.5em;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+    font-size: 70px;
+    text-align: center;   
+}
+
+h2 {
+    font-size: 50px;
+    color: #990000;
+    padding: 30px;
+    font-family: 'Amatic SC', cursive;
+}
+
+h3 {
+    font-size: 25px;
+    color: #ff9900;
+    padding: 5px;
+    font-family: 'Amatic SC', cursive;
+}
+
+p {
+    font-family: 'Open Sans', sans-serif;
+}
+
 /*-------------------------Nav bar*/
 
 nav {
@@ -93,6 +120,12 @@ a.brand-logo {
     color: white;
 }
 
+/*-------------------------Base*/
+
+.flashes {
+    line-height: 2;
+}
+
 /*-------------------------Footer*/
 
 .page-footer {
@@ -101,7 +134,7 @@ a.brand-logo {
     background-color:  #d27979;
 }
 
-/*-------------------------Main*/
+/*-------------------------Index*/
 
 .hero-image {
   height: 50%;
@@ -112,41 +145,11 @@ a.brand-logo {
   margin-top: -55px;
 }
 
-
-h1 {
-    padding-top: 2.5em;
-    padding-bottom: 2.5em;
-    padding-left: 1.5em;
-    padding-right: 1.5em;
-    font-size: 70px;
-    text-align: center;   
-}
-
-h2 {
-    font-size: 50px;
-    color: #990000;
-    padding: 30px;
-    font-family: 'Amatic SC', cursive;
-}
-
-h3 {
-    font-size: 25px;
-    color: #ff9900;
-    padding: 5px;
-    font-family: 'Amatic SC', cursive;
-}
-
 .hero-text {
     color: white;
     font-family: 'Amatic SC', cursive;
     text-shadow: 2px 2px 5px lightcoral;
 }
-
-p {
-    font-family: 'Open Sans', sans-serif;
-}
-
-/*-------------------------Index*/
 
 
 .index-image {

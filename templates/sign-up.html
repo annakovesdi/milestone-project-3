@@ -11,12 +11,12 @@
                             <div class="row">
                                 <div class="input-field col s12 m6">
                                     <i class="material-icons prefix">face</i>
-                                    <input id="name" type="text" class="validate" name="name" required>
+                                    <input id="name" type="text" class="validate" name="name" pattern="^[a-zA-Z ]{3,20}$" required>
                                     <label for="name">Name</label>
                                 </div>
                                 <div class="input-field col s12 m6">
                                     <i class="material-icons prefix">account_circle</i>
-                                    <input id="new_username" type="tel" class="validate" name="new_username" required>
+                                    <input id="new_username" type="text" class="validate" name="new_username" pattern="^[a-zA-Z0-9]{3,20}$" required>
                                     <label for="new_username">Username</label>
                                 </div>
                             </div>
@@ -28,7 +28,7 @@
                                 </div>
                                 <div class="input-field col s12 m6">
                                     <i class="material-icons prefix">lock_open</i>
-                                    <input id="new_password" type="text" class="validate" name="new_password" required>
+                                    <input id="new_password" type="password" class="validate" name="new_password" pattern="^[a-zA-Z0-9]{3,20}$" required>
                                     <label for="new_password">Password</label>
                                 </div>
                             </div>

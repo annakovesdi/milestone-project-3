@@ -64,22 +64,25 @@ def log_in():
 def sign_up():
     if request.method == "POST":
         existing_user = mongo.db.users.find_one(
-            {"username": request.form.get("username").lower()})
+            {"username": request.form.get("new_username").lower()})
+
         if existing_user:
             flash("Username already exists")
-            return redirect(url_for('log_in'))
-        register = {
-            "username": request.form.get("username").lower(),
-            "name": request.form.get("name").lower(),
-            "password": generate_password_hash(request.form.get("password")),
-            "email": request.form.get("email").lower()
-        }
-        mongo.db.users.insert_one(register)
+            return redirect(url_for("sign_up"))
 
-        session["user"] = request.form.get("username").lower()
-        flash("Registration Succesful!")
-    return render_template(
-        "sign-up.html", page_title="Sign Up")
+        sign_up = {
+            "username": request.form.get("new_username").lower(),
+            "name": request.form.get("name").lower(),
+            "password": generate_password_hash(
+                request.form.get("new_password")),
+            "email": request.form.get("email").lower()
+
+        }
+        mongo.db.users.insert_one(sign_up)
+
+        session["user"] = request.form.get("new_username").lower()
+        flash("Registration Successful!")
+    return render_template("sign-up.html")
 
 
 @app.route("/log_out")
