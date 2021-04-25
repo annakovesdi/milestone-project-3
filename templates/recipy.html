@@ -15,6 +15,7 @@
                 <ul class="tabs tabs-fixed-width">
                     <li class="tab"><a href="#ingredients">Ingredients</a></li>
                     <li class="tab"><a class="active" href="#description">Description</a></li>
+                    <li class="tab"><a href="#basics">Basics</a></li>
                 </ul>
             </div>
             <div class="card-content grey lighten-4">
@@ -32,6 +33,15 @@
                     <h3 class="bold">Description</h3>
                     <hr>
                     <p class="left">{{ recipy.description }}</p>
+                </div>
+                <div id="basics">
+                    <h3 class="bold">Basics</h3>
+                    <hr>
+                    <p class="left">Name: {{ recipy.recipy_name }}</p><br>
+                    <p class="left">Prep time in minutes: {{ recipy.time }}</p><br>
+                    <p class="left">Country: {{ recipy.country }}</p><br>
+                    <hr>
+                    <p class="left"><em>Created by: {{ recipy.created_by }}</em></p>
                 </div>
                 <h3 class="bold center enjoy">Enjoy!</h3>
                 <div class="card-action center">

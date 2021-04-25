@@ -49,8 +49,23 @@ def api_recipes():
     return jsonify(recipes=recipes)
 
 
-@app.route("/add_recipy")
+@app.route("/add_recipy", methods=["GET", "POST"])
 def add_recipy():
+    if request.method == "POST":
+        recipy = {
+            "recipy_name": request.form.get("recipy_name"),
+            "time": request.form.get("time"),
+            "country": request.form.get("country"),
+            "ingredients": request.form.getlist("ingredients"),
+            "description": request.form.get("description"),
+            "image_url": request.form.get("url"),
+            "url": request.form.get(
+                "recipy_name").lower().replace(" ", "-"),
+            "created_by": session["user"]
+        }
+        mongo.db.recipes.insert_one(recipy)
+        flash("Recipy added")
+        return redirect(url_for('recipes'))
     return render_template("add-recipy.html", page_title="Add Recipy")
 
 
@@ -122,11 +137,6 @@ def profile(username):
 def week_menu_shuffle():
     return render_template(
         "week-menu-shuffle.html", page_title="Week Menu Shuffle")
-
-
-@app.route("/recipy")
-def recipy():
-    return render_template("recipy.html", page_title="recipy")
 
 
 if __name__ == "__main__":
