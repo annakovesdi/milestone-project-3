@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block link %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='build/css/countrySelect.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<h2 class="center">{{ page_title }}</h2>
+
+<div class="row container">
+    <form class="col s12" method="POST" action="{{ url_for('edit_recipy', recipy_id=recipy._id )}}">
+        <div class="row">
+            <div class="input-field col s6">
+                <input id="recipy_name" name="recipy_name" type="text" pattern="^[a-zA-Z ]{3,20}$" class="validate" value="{{recipy.recipy_name}}" required>
+                <label for="recipy_name">Recipy Name</label>
+            </div>
+            <div class="input-field col s6">
+                <input id="time" type="text" name="time" class="validate" value="{{recipy.time}}">
+                <label for="time">Prep Time in minutes</label>
+            </div>
+        </div>
+        <div class="row center">
+            <input type="text" id="country" name="country" value="{{recipy.country}}">
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="ingredients" type="text" name="ingredients" class="validate" value="{{recipy.ingredients}}" required>
+                <label for="ingredients">Ingredients</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <textarea id="description" type="text" name="description" 
+                    class="validate materialize-textarea description-field" required>{{recipy.description}}</textarea>
+                <label for="description">Description</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="url" type="text" name="url" class="validate" value="{{recipy.image_url}}" required>
+                <label for="url">Image url</label>
+            </div>
+        </div>
+        <button type="submit" name="add_recipy" class="waves-effect waves-light btn submit-button center">Edit Recipy</button>
+    </form>
+</div>
+
+{% endblock %}
+
+{% block script %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='build/js/countrySelect.js') }}"></script>
+<script>
+    $("#country").countrySelect();
+</script>
+{% endblock %}

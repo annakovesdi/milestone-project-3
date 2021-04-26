@@ -139,8 +139,14 @@ def week_menu_shuffle():
         "week-menu-shuffle.html", page_title="Week Menu Shuffle")
 
 
+@app.route("/edit_recipy/<recipy_id>", methods=["GET", "POST"])
+def edit_recipy(recipy_id):
+    recipy = mongo.db.recipes.find_one({"_id": ObjectId(recipy_id)})
+    return render_template(
+        "edit-recipy.html", page_title="Edit Recipy", recipy=recipy)
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
             debug=True)
-

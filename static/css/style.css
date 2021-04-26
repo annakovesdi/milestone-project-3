@@ -199,7 +199,9 @@ input#country {
 
 /*-------------------------add Recipe.html*/
 
-
+.description-field {
+    height: 400px;
+}
 
 
 /*-------------------------Recipy.html*/

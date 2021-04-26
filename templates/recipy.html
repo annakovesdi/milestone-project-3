@@ -46,7 +46,7 @@
                     <div class="row edit-delete-card">
                             <div class="card transparent">
                                 <div class="card-content white-text center">
-                                    <a href="" class="waves-effect waves-light btn submit-button"><i class="material-icons left">create</i>Edit Recipy</a>
+                                    <a href="{{ url_for('edit_recipy', recipy_id=recipy._id) }}" class="waves-effect waves-light btn submit-button"><i class="material-icons left">create</i>Edit Recipy</a>
                                     <a href="" class="waves-effect waves-light btn submit-button"><i class="material-icons left">delete</i>Delete Recipy</a>
                                 </div>
                         </div>
