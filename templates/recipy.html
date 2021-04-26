@@ -37,18 +37,20 @@
                 <div id="basics">
                     <h3 class="bold">Basics</h3>
                     <hr>
-                    <p class="left">Name: {{ recipy.recipy_name }}</p><br>
+                    <p class="left">Name: {{ recipy.recipy_name|title }}</p><br>
                     <p class="left">Prep time in minutes: {{ recipy.time }}</p><br>
                     <p class="left">Country: {{ recipy.country }}</p><br>
                     <hr>
-                    <p class="left"><em>Created by: {{ recipy.created_by }}</em></p>
+                    <p class="left"><em>Created by: {{ recipy.created_by|title }}</em></p>
                     <br class="margin-bottom">
                     <div class="row edit-delete-card">
                             <div class="card transparent">
+                                {% if session.user|lower == recipy.created_by|lower %}
                                 <div class="card-content white-text center">
                                     <a href="{{ url_for('edit_recipy', recipy_id=recipy._id) }}" class="waves-effect waves-light btn submit-button"><i class="material-icons left">create</i>Edit Recipy</a>
-                                    <a href="" class="waves-effect waves-light btn submit-button"><i class="material-icons left">delete</i>Delete Recipy</a>
+                                    <a href="{{ url_for('delete_recipy', recipy_id=recipy._id) }}" class="waves-effect waves-light btn submit-button"><i class="material-icons left">delete</i>Delete Recipy</a>
                                 </div>
+                                {% endif %}
                         </div>
                     </div>
             </div>

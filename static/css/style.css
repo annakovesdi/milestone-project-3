@@ -27,7 +27,7 @@ main {
     margin-bottom: 150px;
 }
 
-button.submit-button:hover {
+.submit-button:hover {
     background-color: #ff9900;
 }
 

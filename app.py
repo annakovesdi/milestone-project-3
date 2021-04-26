@@ -141,9 +141,32 @@ def week_menu_shuffle():
 
 @app.route("/edit_recipy/<recipy_id>", methods=["GET", "POST"])
 def edit_recipy(recipy_id):
+    if request.method == "POST":
+        edited_recipy = {
+            "recipy_name": request.form.get("recipy_name"),
+            "time": request.form.get("time"),
+            "country": request.form.get("country"),
+            "ingredients": request.form.getlist("ingredients"),
+            "description": request.form.get("description"),
+            "image_url": request.form.get("url"),
+            "url": request.form.get(
+                "recipy_name").lower().replace(" ", "-"),
+            "created_by": session["user"]
+        }
+        mongo.db.recipes.update({"_id": ObjectId(recipy_id)}, edited_recipy)
+        flash("Recipy succesfully edited")
+        return redirect(url_for('recipes'))
+
     recipy = mongo.db.recipes.find_one({"_id": ObjectId(recipy_id)})
     return render_template(
         "edit-recipy.html", page_title="Edit Recipy", recipy=recipy)
+
+
+@app.route("/delete_recipy/<recipy_id>")
+def delete_recipy(recipy_id):
+    mongo.db.recipes.remove({"_id": ObjectId(recipy_id)})
+    flash("Recipy deleted")
+    return redirect(url_for('recipes'))
 
 
 if __name__ == "__main__":
