@@ -5,20 +5,20 @@
 </div>
 <!--Shows recipes in database in singular cards-->
 <div class="row">
-    {% for recipy in recipes %}
+    {% for recipe in recipes %}
     <div class="col s12 m4">
         <div class="card">
             <div class="card-image">
-                <img src="{{ recipy.image_url }}">
-                <a class="btn-floating halfway-fab waves-effect waves-light red" href="/recipes/{{recipy.url}}"><i
+                <img src="{{ recipe.image_url }}">
+                <a class="btn-floating halfway-fab waves-effect waves-light red" href="/recipes/{{recipe.url}}"><i
                         class="material-icons">add</i></a>
             </div>
             <div class="card-content">
                 <span class="card-title">
-                    {{ recipy.recipy_name|title }}
+                    {{ recipe.recipe_name|title }}
                 </span>
                 <p>
-                    Country: {{ recipy.country|title }}
+                    Country: {{ recipe.country|title }}
                 </p>
             </div>
         </div>

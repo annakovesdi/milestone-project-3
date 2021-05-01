@@ -1,7 +1,7 @@
 import os
 from flask import (
     Flask, flash, render_template,
-    redirect, request, session, url_for, jsonify)
+    redirect, request, session, url_for)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -21,7 +21,9 @@ mongo = PyMongo(app)
 @app.route("/")
 @app.route("/index")
 def index():
-    recipes = mongo.db.recipes.find()
+    recipes = [
+        recipe for recipe in mongo.db.recipes.aggregate(
+            [{"$sample": {"size": 3}}])]
     return render_template("index.html", recipes=recipes)
 
 
@@ -32,63 +34,64 @@ def recipes():
         "recipes.html", page_title="Recipes", recipes=recipes)
 
 
-@app.route("/recipes/<recipy_name>")
-def recipy_page(recipy_name):
-    this_recipy = {}
+@app.route("/recipes/<recipe_name>")
+def recipe_page(recipe_name):
+    this_recipe = {}
     recipes = mongo.db.recipes.find()
-    for recipy in recipes:
-        if recipy["url"] == recipy_name:
-            this_recipy = recipy
-    return render_template("recipy.html", recipy=this_recipy)
+    for recipe in recipes:
+        if recipe["url"] == recipe_name:
+            this_recipe = recipe
+    return render_template("recipe.html", recipe=this_recipe)
 
 
-@app.route("/api/recipes")
-def api_recipes():
-    recipes = mongo.db.recipes.find()
-    print(recipes)
-    return jsonify(recipes=recipes)
-
-
-@app.route("/add_recipy", methods=["GET", "POST"])
-def add_recipy():
+@app.route("/add_recipe", methods=["GET", "POST"])
+def add_recipe():
     if request.method == "POST":
-        recipy = {
-            "recipy_name": request.form.get("recipy_name"),
+        recipe = {
+            "recipe_name": request.form.get("recipe_name"),
             "time": request.form.get("time"),
             "country": request.form.get("country"),
             "ingredients": request.form.getlist("ingredients"),
             "description": request.form.get("description"),
             "image_url": request.form.get("url"),
             "url": request.form.get(
-                "recipy_name").lower().replace(" ", "-"),
+                "recipe_name").lower().replace(" ", "-"),
             "created_by": session["user"]
         }
-        mongo.db.recipes.insert_one(recipy)
-        flash("Recipy added")
+        mongo.db.recipes.insert_one(recipe)
+        flash("recipe added")
         return redirect(url_for('recipes'))
-    return render_template("add-recipy.html", page_title="Add Recipy")
+    return render_template("add-recipe.html", page_title="Add Recipe")
 
 
-@app.route("/log_in", methods=["GET", "POST"])
-def log_in():
+@app.route("/edit_recipe/<recipe_id>", methods=["GET", "POST"])
+def edit_recipe(recipe_id):
     if request.method == "POST":
-        existing_user = mongo.db.users.find_one(
-            {"username": request.form.get("username").lower()})
+        edited_recipe = {
+            "recipe_name": request.form.get("recipe_name"),
+            "time": request.form.get("time"),
+            "country": request.form.get("country"),
+            "ingredients": request.form.getlist("ingredients"),
+            "description": request.form.get("description"),
+            "image_url": request.form.get("url"),
+            "url": request.form.get(
+                "recipe_name").lower().replace(" ", "-"),
+            "created_by": session["user"]
+        }
+        mongo.db.recipes.update({"_id": ObjectId(recipe_id)}, edited_recipe)
+        flash("recipe succesfully edited")
+        return redirect(url_for('recipes'))
 
-        if existing_user:
-            if check_password_hash(
-                    existing_user["password"], request.form.get("password")):
-                session["user"] = request.form.get("username").lower()
-                flash("Welcome {}!".format(request.form.get("username")))
-                return redirect(url_for('profile', username=session["user"]))
-            else:
-                flash("Username and/or password incorrect")
-                return redirect(url_for('log_in'))
-        else:
-            flash("Username and/or password incorrect")
-            return redirect(url_for('log_in'))
+    recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
     return render_template(
-        "log-in.html", page_title="Log In")
+        "edit-recipe.html", page_title="Edit Recipe", recipe=recipe)
+
+
+@app.route("/delete_recipe/<recipe_id>")
+def delete_recipe(recipe_id):
+    mongo.db.recipes.remove({"_id": ObjectId(recipe_id)})
+    flash("recipe deleted")
+    return redirect(url_for('recipes'))
 
 
 @app.route("/sign_up", methods=["GET", "POST"])
@@ -118,6 +121,28 @@ def sign_up():
     return render_template("sign-up.html")
 
 
+@app.route("/log_in", methods=["GET", "POST"])
+def log_in():
+    if request.method == "POST":
+        existing_user = mongo.db.users.find_one(
+            {"username": request.form.get("username").lower()})
+
+        if existing_user:
+            if check_password_hash(
+                    existing_user["password"], request.form.get("password")):
+                session["user"] = request.form.get("username").lower()
+                flash("Welcome {}!".format(request.form.get("username")))
+                return redirect(url_for('profile', username=session["user"]))
+            else:
+                flash("Username and/or password incorrect")
+                return redirect(url_for('log_in'))
+        else:
+            flash("Username and/or password incorrect")
+            return redirect(url_for('log_in'))
+    return render_template(
+        "log-in.html", page_title="Log In")
+
+
 @app.route("/log_out")
 def log_out():
     flash("You have been logged out")
@@ -127,46 +152,62 @@ def log_out():
 
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
-    username = mongo.db.users.find_one(
-        {"username": session["user"]})["name"]
+    user = mongo.db.users.find_one(
+        {"username": session["user"]})
+    user_recipes = mongo.db.recipes.find({"created_by": session["user"]})
     return render_template(
-        "profile.html", page_title="Log Out", username=username)
+        "profile.html", page_title="Profile",
+        user=user, user_recipes=user_recipes)
+
+
+@app.route("/edit_profile/<user_id>", methods=["GET", "POST"])
+def edit_profile(user_id):
+    if request.method == "POST":
+        edited_profile = {
+            "$set":
+                {"name": request.form.get("name"),
+                    "email": request.form.get("email")}
+        }
+        mongo.db.users.update_one({"_id": ObjectId(user_id)}, edited_profile)
+        flash("Profile succesfully edited")
+        # return redirect(url_for('profile', username=session["user"]))
+    user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
+    print(user)
+    return render_template(
+        "edit-profile.html", page_title="Edit Profile", user=user)
+
+
+@app.route("/edit_password/<user_id>", methods=["GET", "POST"])
+def edit_password(user_id):
+    if request.method == "POST":
+        edited_password = {
+            "$set":
+                {"password": generate_password_hash(
+                    request.form.get("new_password"))}
+        }
+        mongo.db.users.update_one({"_id": ObjectId(user_id)}, edited_password)
+        flash("Password succesfully edited")
+        # return redirect(url_for('profile', username=session["user"]))
+    user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
+    return render_template(
+        "edit-password.html", page_title="Edit Password", user=user)
+
+
+@app.route("/delete_profile/<user_id>")
+def delete_profile(user_id):
+    mongo.db.users.remove({"_id": ObjectId(user_id)})
+    flash("User deleted")
+    return redirect(url_for('sign_up'))
 
 
 @app.route("/week_menu_shuffle")
 def week_menu_shuffle():
+    shuffle = [
+        recipe for recipe in mongo.db.recipes.aggregate(
+            [{"$sample": {"size": 7}}])]
     return render_template(
-        "week-menu-shuffle.html", page_title="Week Menu Shuffle")
-
-
-@app.route("/edit_recipy/<recipy_id>", methods=["GET", "POST"])
-def edit_recipy(recipy_id):
-    if request.method == "POST":
-        edited_recipy = {
-            "recipy_name": request.form.get("recipy_name"),
-            "time": request.form.get("time"),
-            "country": request.form.get("country"),
-            "ingredients": request.form.getlist("ingredients"),
-            "description": request.form.get("description"),
-            "image_url": request.form.get("url"),
-            "url": request.form.get(
-                "recipy_name").lower().replace(" ", "-"),
-            "created_by": session["user"]
-        }
-        mongo.db.recipes.update({"_id": ObjectId(recipy_id)}, edited_recipy)
-        flash("Recipy succesfully edited")
-        return redirect(url_for('recipes'))
-
-    recipy = mongo.db.recipes.find_one({"_id": ObjectId(recipy_id)})
-    return render_template(
-        "edit-recipy.html", page_title="Edit Recipy", recipy=recipy)
-
-
-@app.route("/delete_recipy/<recipy_id>")
-def delete_recipy(recipy_id):
-    mongo.db.recipes.remove({"_id": ObjectId(recipy_id)})
-    flash("Recipy deleted")
-    return redirect(url_for('recipes'))
+        "week-menu-shuffle.html",
+        page_title="Week Menu Shuffle", shuffle=shuffle)
 
 
 if __name__ == "__main__":

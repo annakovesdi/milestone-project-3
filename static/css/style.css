@@ -125,14 +125,20 @@ a.brand-logo {
 .flashes {
     margin-top: 100px;
     line-height: 2;
+    max-width: 60%;
 }
 
 h4 {
     font-size: 28px;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Amatic SC', cursive;
     color: rgb(0, 0, 0);
     text-transform: uppercase;
     font-weight: 200;
+    padding: 50px;
+    margin-left: 40px;
+    margin-right: 40px;
+    border: 1px solid #993333;
+    border-radius: 40px;
 }
 
 /*-------------------------Footer*/
@@ -190,6 +196,29 @@ div.card-image img{
 }
 
 
+/*-------------------------Profile*/
+
+.submit-button.profile-button {
+    background-color: #fff;
+    color: #d27979;
+    padding-right: 50px;
+    padding-left: 50px;
+    webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+
+.submit-button.profile-button:hover{
+    webkit-box-shadow: 0 3px 3px 0 rgb(0 0 0 / 14%), 0 1px 7px 0 rgb(0 0 0 / 12%), 0 3px 1px -1px rgb(0 0 0 / 20%);
+    box-shadow: 0 3px 3px 0 rgb(0 0 0 / 14%), 0 1px 7px 0 rgb(0 0 0 / 12%), 0 3px 1px -1px rgb(0 0 0 / 20%);
+}
+
+.profile-card {
+    margin: 30px;
+}
+
+
+
 /*-------------------------Week Menu Shuffle*/
 
 
@@ -204,7 +233,7 @@ input#country {
 }
 
 
-/*-------------------------Recipy.html*/
+/*-------------------------recipe.html*/
 
 h2.center {
     margin: 0;
@@ -215,11 +244,11 @@ div#description {
     min-height: 100px;
 }
 
-.card-image-recipy-page {
+.card-image-recipe-page {
     height: max-content;
 }
 
-.recipy-card {
+.recipe-card {
     max-width: 80%;
     margin: auto;
 }
@@ -239,7 +268,7 @@ div.card-content.grey.lighten-4 {
 /*-------------------------Media Query*/
 
 @media only screen and (min-width: 768px) {
-    .recipy-card {
+    .recipe-card {
         max-width: 70%;
     }
     .enjoy {
@@ -249,7 +278,7 @@ div.card-content.grey.lighten-4 {
 }
 
 @media only screen and (min-width: 992px) {
-    .recipy-card {
+    .recipe-card {
         max-width: 60%;
     }
     .enjoy {

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="col s12 m7">
+    <h2 class="header center">{{ page_title }}</h2>
+    <div class="form-card-parent">
+        <div class="card horizontal form-card">
+            <div class="card-stacked">
+                <div class="card-content">
+                    <div class="row">
+                        <form class="col s12" method="POST" action="{{ url_for('edit_profile', user_id=user._id )}}">
+                            <div class="row">
+                                <div class="input-field">
+                                    <i class="material-icons prefix">face</i>
+                                    <input id="name" type="text" class="validate" name="name" pattern="^[a-zA-Z ]{3,20}$" value="{{user.name}}" required>
+                                    <label for="name">Name</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field">
+                                    <i class="material-icons prefix">email</i>
+                                    <input id="email" type="email" class="validate" name="email" value="{{user.email}}" required>
+                                    <label for="email">Email Address</label>
+                                </div>
+                            </div>
+                            <div class="card-action center">
+                    <button class="btn waves-effect waves-light submit-button" type="submit" name="sign_up">Edit Profile
+                        <i class="material-icons right">send</i>
+                    </button>
+                </div>
+                        </form>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <br class="margin-bottom">
+</div>
+
+{% endblock %}

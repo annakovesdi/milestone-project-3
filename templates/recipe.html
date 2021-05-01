@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
 
-<div class="recipy-card">
+<div class="recipe-card">
         <div class="card">
             <div class="card-image">
-                <img src="{{ recipy.image_url }}" alt="Image of the dish {{ recipy.name }}">
+                <img src="{{ recipe.image_url }}" alt="Image of the dish {{ recipe.name }}">
             </div>
             <div class="card-content">
-                <h2 class="center">{{ recipy.recipy_name|title }}</h2>
-                <p class="bold center">Country: {{ recipy.country|title }}</p>
+                <h2 class="center">{{ recipe.recipe_name|title }}</h2>
+                <p class="bold center">Country: {{ recipe.country|title }}</p>
 
             </div>
             <div class="card-tabs">
@@ -23,7 +23,7 @@
                     <h3 class="bold">Ingredients</h3>
                     <hr>
                     <ul class="left">
-                        {% for ingredient in recipy.ingredients %}
+                        {% for ingredient in recipe.ingredients %}
                         <li>-{{ ingredient }}</li>
                         {% endfor %}
                     </ul>
@@ -32,23 +32,23 @@
                 <div id="description">
                     <h3 class="bold">Description</h3>
                     <hr>
-                    <p class="left">{{ recipy.description }}</p>
+                    <p class="left">{{ recipe.description }}</p>
                 </div>
                 <div id="basics">
                     <h3 class="bold">Basics</h3>
                     <hr>
-                    <p class="left">Name: {{ recipy.recipy_name|title }}</p><br>
-                    <p class="left">Prep time in minutes: {{ recipy.time }}</p><br>
-                    <p class="left">Country: {{ recipy.country }}</p><br>
+                    <p class="left">Name: {{ recipe.recipe_name|title }}</p><br>
+                    <p class="left">Prep time in minutes: {{ recipe.time }}</p><br>
+                    <p class="left">Country: {{ recipe.country }}</p><br>
                     <hr>
-                    <p class="left"><em>Created by: {{ recipy.created_by|title }}</em></p>
+                    <p class="left"><em>Created by: {{ recipe.created_by|title }}</em></p>
                     <br class="margin-bottom">
                     <div class="row edit-delete-card">
                             <div class="card transparent">
-                                {% if session.user|lower == recipy.created_by|lower %}
+                                {% if session.user|lower == recipe.created_by|lower %}
                                 <div class="card-content white-text center">
-                                    <a href="{{ url_for('edit_recipy', recipy_id=recipy._id) }}" class="waves-effect waves-light btn submit-button"><i class="material-icons left">create</i>Edit Recipy</a>
-                                    <a href="{{ url_for('delete_recipy', recipy_id=recipy._id) }}" class="waves-effect waves-light btn submit-button"><i class="material-icons left">delete</i>Delete Recipy</a>
+                                    <a href="{{ url_for('edit_recipe', recipe_id=recipe._id) }}" class="waves-effect waves-light btn submit-button"><i class="material-icons left">create</i>Edit recipe</a>
+                                    <a href="{{ url_for('delete_recipe', recipe_id=recipe._id) }}" class="waves-effect waves-light btn submit-button"><i class="material-icons left">delete</i>Delete recipe</a>
                                 </div>
                                 {% endif %}
                         </div>
