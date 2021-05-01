@@ -118,7 +118,7 @@ def sign_up():
         flash("You are now signed up, welcome!")
         return redirect(url_for('profile', username=session["user"]))
 
-    return render_template("sign-up.html")
+    return render_template("sign-up.html", page_title="Sign Up")
 
 
 @app.route("/log_in", methods=["GET", "POST"])

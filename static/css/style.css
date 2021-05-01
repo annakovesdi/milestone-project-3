@@ -215,7 +215,10 @@ div.card-image img{
     margin-bottom: 40px;
 }
 
-
+.sign-up-image {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../img/paprika.jpg');
+    margin-bottom: 40px;
+}
 
 /*-------------------------Profile*/
 

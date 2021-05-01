@@ -1,7 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
+<div class="hero-image sign-up-image">
+    <div ></div>
+        <h2 class="page-heading center">{{ page_title }}</h2>
+    </div>
+<div>
 <div class="col s12 m7">
-    <h2 class="header center">{{ page_title }}</h2>
     <div class="form-card-parent">
         <div class="card horizontal form-card">
             <div class="card-stacked">
@@ -32,7 +36,7 @@
                                     <label for="new_password">Password</label>
                                 </div>
                             </div>
-                            <div class="card-action center">
+                           <div class="center">
                     <button class="btn waves-effect waves-light submit-button" type="submit" name="sign_up">Sign Up
                         <i class="material-icons right">send</i>
                     </button>
