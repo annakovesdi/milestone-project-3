@@ -143,10 +143,12 @@ def log_in():
         "log-in.html", page_title="Log In")
 
 
-@app.route("/log_out")
-def log_out():
+@app.route("/log_out/<username>")
+def log_out(username):
+    username = mongo.db.users.find_one(
+        {"username": session["user"]})
     flash("You have been logged out")
-    session.pop("user")
+    session.pop(username)
     return redirect(url_for("log_in"))
 
 
