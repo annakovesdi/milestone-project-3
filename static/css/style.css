@@ -54,7 +54,7 @@ h1 {
 
 h2 {
     font-size: 50px;
-    color: #990000;
+    color: white;
     padding: 30px;
     font-family: 'Amatic SC', cursive;
 }
@@ -69,6 +69,16 @@ h3 {
 p {
     font-family: 'Open Sans', sans-serif;
 }
+
+.btn:focus {
+    outline: none;
+    background-color: #993333;
+}
+
+.page-heading {
+    padding: 100px;
+}
+
 
 /*-------------------------Nav bar*/
 
@@ -230,6 +240,15 @@ input#country {
 
 .description-field {
     height: 400px;
+}
+
+.add-recipy-image {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../img/veggie.jpg');
+    margin-bottom: 60px;
+}
+
+.add-recipe {
+    padding-bottom: 40px;
 }
 
 

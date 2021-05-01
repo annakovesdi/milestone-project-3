@@ -35,3 +35,4 @@ to do:
 -add 10 recp. per country
 -redirect_urls not working??
 -value in stars option???
+
