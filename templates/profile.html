@@ -1,19 +1,22 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h2 class="center">{{ user.name }}</h2>
-
+<div class="hero-image profile-image">
+    <div ></div>
+        <h2 class="page-heading center">{{ page_title }}</h2>
+    </div>
+<div>
  <div class="row">
                             <div class="profile-card">
                                 <div class="card-content white-text center">
-                                    <a href="{{ url_for('edit_profile', user_id=user._id )}}" class="waves-effect waves-light submit-button btn profile-button"><i class="material-icons left">face</i>Edit Profile</a>
-                                    <a href="{{ url_for('edit_password', user_id=user._id )}}" class="waves-effect waves-light btn submit-button profile-button"><i class="material-icons left">edit</i>Edit Password</a>
-                                    <a href="{{ url_for('delete_profile', user_id=user._id )}}" class="waves-effect waves-light btn submit-button profile-button"><i class="material-icons left">delete</i>Delete Profile</a>
+                                    <a href="{{ url_for('edit_profile', user_id=user._id )}}" class="waves-effect waves-light submit-button btn profile-button"><i class="material-icons icon-profile left">face</i>Edit Profile</a>
+                                    <a href="{{ url_for('edit_password', user_id=user._id )}}" class="waves-effect waves-light btn submit-button profile-button"><i class="material-icons icon-profile left">edit</i>Edit Password</a>
+                                    <a href="{{ url_for('delete_profile', user_id=user._id )}}" class="waves-effect waves-light btn submit-button profile-button"><i class="material-icons icon-profile left">delete</i>Delete Profile</a>
                                 </div>
                         </div>
                     </div>
 
-<h2 class="center">My Recipes</h2>
+<h2 class="center red-color">My Recipes</h2>
 <div class="row">
     {% for recipe in user_recipes %}
     <div class="col s12 m4">

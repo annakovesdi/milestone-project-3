@@ -80,6 +80,10 @@ p {
     background: radial-gradient(rgba(0,0,0,0.5), transparent);
 }
 
+.red-color {
+    color: #990000;
+}
+
 
 /*-------------------------Nav bar*/
 
@@ -234,7 +238,10 @@ div.card-image img{
     margin: 30px;
 }
 
-
+.profile-image {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../img/market.jpg');
+    margin-bottom: 40px;
+}
 
 /*-------------------------Week Menu Shuffle*/
 
@@ -315,3 +322,14 @@ div.card-content.grey.lighten-4 {
         margin: auto;
     }
 }
+
+@media only screen and (max-width: 768px) {
+    .icon-profile {
+        visibility: hidden;
+        display: none;
+    }
+    
+}
+
+
+
