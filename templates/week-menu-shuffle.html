@@ -3,8 +3,13 @@
 {% block link %}
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='build/css/countrySelect.css') }}">
 {% endblock %}
-
-
+{% block image %}
+<div class="hero-image shuffle-image">
+    <div ></div>
+        <h2 class="page-heading center">{{ page_title }}</h2>
+    </div>
+<div>
+{% endblock %}
 {% block content %}
 <div class="col s12 m7">
     <h2 class="header center">{{ page_title }}</h2>

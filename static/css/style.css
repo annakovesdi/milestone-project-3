@@ -253,6 +253,11 @@ input#country {
     max-width: max-content;
 }
 
+.shuffle-image {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../img/basic.jpg');
+    margin-bottom: 40px;
+}
+
 /*-------------------------add Recipe.html*/
 
 .description-field {
@@ -299,6 +304,18 @@ div.card-content.grey.lighten-4 {
 
 .edit-delete-card {
     margin-top: 50px;
+}
+
+.recipe-image {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../img/fruit.jpg');
+    margin-bottom: 60px;
+}
+
+/*-------------------------Recipes*/
+
+.recipes-image {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../img/pepper.jpg');
+    margin-bottom: 60px;
 }
 
 /*-------------------------Media Query*/
