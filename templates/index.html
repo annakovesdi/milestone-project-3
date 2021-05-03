@@ -38,11 +38,3 @@
 </div>
 
 {% endblock %}
-{% block script %}
-<script>$(document).ready(function () {
-    $.getJSON("/api/recipes", function(data){
-        console.log(data)
-    })
-    });
-    </script>
-{% endblock %}

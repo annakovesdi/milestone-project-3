@@ -39,7 +39,7 @@ to do:
 -search function @ recipes page
 -pop up before deleting recipy or profile
 *-ingredients field big enough for text (textarea)
--log out when deleting profile (bug) 
+*-log out when deleting profile (bug) 
 -delete all recipes of profile?
 -forgot password?
 
