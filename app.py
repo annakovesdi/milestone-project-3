@@ -41,7 +41,7 @@ def recipe_page(recipe_name):
     for recipe in recipes:
         if recipe["url"] == recipe_name:
             this_recipe = recipe
-    return render_template("recipe.html", recipe=this_recipe)
+    return render_template("recipe.html", recipe=this_recipe,)
 
 
 @app.route("/add_recipe", methods=["GET", "POST"])
@@ -60,7 +60,7 @@ def add_recipe():
         }
         mongo.db.recipes.insert_one(recipe)
         flash("recipe added")
-        return redirect(url_for('recipes'))
+        return redirect(url_for('recipes', _external=True, _scheme='https'))
     return render_template("add-recipe.html", page_title="Add Recipe")
 
 
@@ -80,7 +80,7 @@ def edit_recipe(recipe_id):
         }
         mongo.db.recipes.update({"_id": ObjectId(recipe_id)}, edited_recipe)
         flash("recipe succesfully edited")
-        return redirect(url_for('recipes'))
+        return redirect(url_for('recipes', _external=True, _scheme='https'))
 
     recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
     return render_template(
@@ -91,7 +91,7 @@ def edit_recipe(recipe_id):
 def delete_recipe(recipe_id):
     mongo.db.recipes.remove({"_id": ObjectId(recipe_id)})
     flash("recipe deleted")
-    return redirect(url_for('recipes'))
+    return redirect(url_for('recipes', _external=True, _scheme='https'))
 
 
 @app.route("/sign_up", methods=["GET", "POST"])
@@ -102,7 +102,7 @@ def sign_up():
 
         if existing_user:
             flash("Username already exists")
-            return redirect(url_for("sign_up"))
+            return redirect(url_for("sign_up", _external=True, _scheme='https'))
 
         sign_up = {
             "username": request.form.get("new_username").lower(),
@@ -116,7 +116,7 @@ def sign_up():
 
         session["user"] = request.form.get("new_username").lower()
         flash("You are now signed up, welcome!")
-        return redirect(url_for('profile', username=session["user"]))
+        return redirect(url_for('profile', username=session["user"], _external=True, _scheme='https'))
 
     return render_template("sign-up.html", page_title="Sign Up")
 
@@ -132,24 +132,22 @@ def log_in():
                     existing_user["password"], request.form.get("password")):
                 session["user"] = request.form.get("username").lower()
                 flash("Welcome {}!".format(request.form.get("username")))
-                return redirect(url_for('profile', username=session["user"]))
+                return redirect(url_for('profile', username=session["user"], _external=True, _scheme='https'))
             else:
                 flash("Username and/or password incorrect")
-                return redirect(url_for('log_in'))
+                return redirect(url_for('log_in', _external=True, _scheme='https'))
         else:
             flash("Username and/or password incorrect")
-            return redirect(url_for('log_in'))
+            return redirect(url_for('log_in', _external=True, _scheme='https'))
     return render_template(
         "log-in.html", page_title="Log In")
 
 
-@app.route("/log_out/<username>")
-def log_out(username):
-    username = mongo.db.users.find_one(
-        {"username": session["user"]})
+@app.route("/log_out")
+def log_out():
     flash("You have been logged out")
-    session.pop(username)
-    return redirect(url_for("log_in"))
+    session.pop("user")
+    return redirect(url_for("log_in", _external=True, _scheme='https'))
 
 
 @app.route("/profile/<username>", methods=["GET", "POST"])
@@ -158,8 +156,7 @@ def profile(username):
         {"username": session["user"]})
     user_recipes = mongo.db.recipes.find({"created_by": session["user"]})
     return render_template(
-        "profile.html", page_title="Profile",
-        user=user, user_recipes=user_recipes)
+        "profile.html", user=user, user_recipes=user_recipes)
 
 
 @app.route("/edit_profile/<user_id>", methods=["GET", "POST"])
@@ -172,7 +169,7 @@ def edit_profile(user_id):
         }
         mongo.db.users.update_one({"_id": ObjectId(user_id)}, edited_profile)
         flash("Profile succesfully edited")
-        # return redirect(url_for('profile', username=session["user"]))
+        return redirect(url_for('profile', username=session["user"], _external=True, _scheme='https'))
     user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
     print(user)
     return render_template(
@@ -199,7 +196,8 @@ def edit_password(user_id):
 def delete_profile(user_id):
     mongo.db.users.remove({"_id": ObjectId(user_id)})
     flash("User deleted")
-    return redirect(url_for('sign_up'))
+    session.pop("user")
+    return redirect(url_for('sign_up', _external=True, _scheme='https'))
 
 
 @app.route("/week_menu_shuffle")

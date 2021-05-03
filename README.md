@@ -33,7 +33,13 @@ How to update only some fields
 to do: 
 -week menu shuffle
 -add 10 recp. per country
--redirect_urls not working??
--value in stars option???
+-value in stars option?
 -list ingredients!
+=cancel button @ add recipe, and edit profile, and edit password
+-search function @ recipes page
+-pop up before deleting recipy or profile
+*-ingredients field big enough for text (textarea)
+-log out when deleting profile (bug) 
+-delete all recipes of profile?
+-forgot password?
 
