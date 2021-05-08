@@ -102,7 +102,8 @@ def sign_up():
 
         if existing_user:
             flash("Username already exists")
-            return redirect(url_for("sign_up", _external=True, _scheme='https'))
+            return redirect(url_for(
+                "sign_in", _external=True, _scheme='https'))
 
         sign_up = {
             "username": request.form.get("new_username").lower(),
@@ -116,7 +117,9 @@ def sign_up():
 
         session["user"] = request.form.get("new_username").lower()
         flash("You are now signed up, welcome!")
-        return redirect(url_for('profile', username=session["user"], _external=True, _scheme='https'))
+        return redirect(url_for(
+            'profile', username=session["user"],
+            _external=True, _scheme='https'))
 
     return render_template("sign-up.html", page_title="Sign Up")
 
@@ -132,10 +135,13 @@ def log_in():
                     existing_user["password"], request.form.get("password")):
                 session["user"] = request.form.get("username").lower()
                 flash("Welcome {}!".format(request.form.get("username")))
-                return redirect(url_for('profile', username=session["user"], _external=True, _scheme='https'))
+                return redirect(url_for(
+                    'profile', username=session["user"],
+                    _external=True, _scheme='https'))
             else:
                 flash("Username and/or password incorrect")
-                return redirect(url_for('log_in', _external=True, _scheme='https'))
+                return redirect(url_for(
+                    'log_in', _external=True, _scheme='https'))
         else:
             flash("Username and/or password incorrect")
             return redirect(url_for('log_in', _external=True, _scheme='https'))
@@ -169,7 +175,9 @@ def edit_profile(user_id):
         }
         mongo.db.users.update_one({"_id": ObjectId(user_id)}, edited_profile)
         flash("Profile succesfully edited")
-        return redirect(url_for('profile', username=session["user"], _external=True, _scheme='https'))
+        return redirect(url_for(
+            'profile', username=session["user"],
+            _external=True, _scheme='https'))
     user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
     print(user)
     return render_template(
@@ -186,7 +194,7 @@ def edit_password(user_id):
         }
         mongo.db.users.update_one({"_id": ObjectId(user_id)}, edited_password)
         flash("Password succesfully edited")
-        # return redirect(url_for('profile', username=session["user"]))
+        return redirect(url_for('profile', username=session["user"]))
     user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
     return render_template(
         "edit-password.html", page_title="Edit Password", user=user)
@@ -200,14 +208,23 @@ def delete_profile(user_id):
     return redirect(url_for('sign_up', _external=True, _scheme='https'))
 
 
-@app.route("/week_menu_shuffle")
+@app.route("/week_menu_shuffle", methods=["GET", "POST"])
 def week_menu_shuffle():
-    shuffle = [
-        recipe for recipe in mongo.db.recipes.aggregate(
-            [{"$sample": {"size": 7}}])]
+    if request.method == "POST":
+        country = {"country": request.form.get("country")}
+        return redirect(url_for('week_menu', country=country))
     return render_template(
         "week-menu-shuffle.html",
-        page_title="Week Menu Shuffle", shuffle=shuffle)
+        page_title="Week Menu Shuffle")
+
+
+@app.route("/week_menu/<country>")
+def week_menu(country):
+    print(country)
+    recipes = mongo.db.recipes.find({"country": country})
+    print(list(recipes))
+    return render_template("week-menu.html", recipes=recipes, country=country,
+                           page_title="Your Week Menu")
 
 
 if __name__ == "__main__":

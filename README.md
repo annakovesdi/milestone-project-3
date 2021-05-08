@@ -41,5 +41,23 @@ to do:
 *-ingredients field big enough for text (textarea)
 *-log out when deleting profile (bug) 
 -delete all recipes of profile?
--forgot password?
+-backend defensive programming
+=change url to slug
 
+
+recipes = mongo.db.recipes.find({"country": country})
+    shuffle = [
+        recipe for recipe in recipes.aggregate(
+            [{"$sample": {"size": 7}}])]
+
+@app.route("/week_menu/<country>")
+def week_menu(country):
+    this_country = {}
+    countries = mongo.db.recipes.find(
+            {"country": request.form.get("country")})
+    for item in countries:
+        if item["country"] == country:
+            this_country = item
+    return render_template("week-menu.html", country=this_country,
+                           page_title="Your {} Week Menu".format(
+                               request.form.get("country")))

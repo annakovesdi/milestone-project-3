@@ -15,13 +15,11 @@
     <div class="form-card-parent">
         <div class="card horizontal form-card">
             <div class="card-stacked">
-                <div class="card-content center">
+                <form class="card-content center" method="POST" action="{{url_for('week_menu_shuffle')}}">
                     <input type="text" id="country" name="country">
-                </div>
-                <div class="card-action center">
-                    <a href="#" class="btn waves-effect waves-light submit-button" type="submit" name="action">Shuffle!
-                        <i class="material-icons right">search</i></a>
-                </div>
+                    <button class="btn waves-effect waves-light submit-button" type="submit">Shuffle!
+                        <i class="material-icons right">search</i></button>
+                    </form>
             </div>
         </div>
     </div>

@@ -1,11 +1,4 @@
 {% extends "base.html" %}
-{% block image %}
-<div class="hero-image recipe-image">
-    <div ></div>
-        <h2 class="page-heading center">{{ page_title }}</h2>
-    </div>
-<div>
-{% endblock %}
 {% block content %}
 <div class="recipe-card">
         <div class="card">
@@ -13,7 +6,7 @@
                 <img src="{{ recipe.image_url }}" alt="Image of the dish {{ recipe.name }}">
             </div>
             <div class="card-content">
-                <h2 class="center">{{ recipe.recipe_name|title }}</h2>
+                <h2 class="center red-color">{{ recipe.recipe_name|title }}</h2>
                 <p class="bold center">Country: {{ recipe.country|title }}</p>
 
             </div>
