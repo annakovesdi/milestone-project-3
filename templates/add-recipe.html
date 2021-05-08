@@ -14,11 +14,11 @@
 <div class="row container add-recipe">
     <form class="col s12" method="POST" action="{{ url_for('add_recipe' )}}">
         <div class="row">
-            <div class="input-field col s6">
+            <div class="input-field col s12 m6">
                 <input id="recipe_name" name="recipe_name" type="text" pattern="^[a-zA-Z ]{3,20}$" class="validate" required>
                 <label for="recipe_name">Recipe Name</label>
             </div>
-            <div class="input-field col s6">
+            <div class="input-field col s12 m6">
                 <input id="time" type="text" name="time" class="validate">
                 <label for="time">Prep Time in minutes</label>
             </div>
@@ -27,9 +27,39 @@
             <input type="text" id="country" name="country">
         </div>
         <div class="row">
-            <div class="input-field col s12">
-                <textarea id="ingredients" type="text" name="ingredients" class="validate materialize-textarea" required></textarea>
-                <label for="ingredients">Ingredients</label>
+            <div class="input-field col s12 m3 l3">
+                <input id="ingredient1" type="text" name="ingredients" class="validate materialize-textarea" required>
+                <label for="ingredients">Ingredient, amount</label>
+            </div>
+            <div class="input-field col s12 m3 l3">
+                <input id="ingredient2" type="text" name="ingredients" class="validate materialize-textarea" >
+                <label for="ingredients">Ingredient, amount</label>
+            </div>
+            <div class="input-field col s12 m3 l3">
+                <textarea id="ingredient3" type="text" name="ingredients" class="validate materialize-textarea" ></textarea>
+                <label for="ingredients">Ingredient, amount</label>
+            </div>
+            <div class="input-field col s12 m3 l3">
+                <textarea id="ingredient4" type="text" name="ingredients" class="validate materialize-textarea" ></textarea>
+                <label for="ingredients">Ingredient, amount</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12 m3 l3">
+                <textarea id="ingredient5" type="text" name="ingredients" class="validate materialize-textarea" ></textarea>
+                <label for="ingredients">Ingredient, amount</label>
+            </div>
+            <div class="input-field col s12 m3 l3">
+                <textarea id="ingredient6" type="text" name="ingredients" class="validate materialize-textarea" ></textarea>
+                <label for="ingredients">Ingredient, amount</label>
+            </div>
+            <div class="input-field col s12 m3 l3">
+                <textarea id="ingredient7" type="text" name="ingredients" class="validate materialize-textarea" ></textarea>
+                <label for="ingredients">Ingredient, amount</label>
+            </div>
+            <div class="input-field col s12 m3 l3">
+                <textarea id="ingredient8" type="text" name="ingredients" class="validate materialize-textarea" ></textarea>
+                <label for="ingredients">Ingredient, amount</label>
             </div>
         </div>
         <div class="row">

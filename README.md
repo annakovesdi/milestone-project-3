@@ -33,7 +33,7 @@ How to update only some fields
 to do: 
 -week menu shuffle
 -add 10 recp. per country
--value in stars option?
+-*value in stars option? No
 -list ingredients!
 =cancel button @ add recipe, and edit profile, and edit password
 -search function @ recipes page
