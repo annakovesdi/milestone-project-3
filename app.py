@@ -34,12 +34,29 @@ def recipes():
         "recipes.html", page_title="Recipes", recipes=recipes)
 
 
+# Search Recipes
+@app.route("/search", methods=["GET", "POST"])
+def search():
+    query = request.form.get("query")
+    recipes = mongo.db.recipes.find({"$text": {"$search": query}})
+
+    # No Search Results: https://www.geeksforgeeks.org/how-to-check-if-the-pymongo-cursor-is-empty/
+    results = list(recipes)
+    if len(results) == 0:
+        flash("No Recipes Found")
+        return redirect(url_for("recipes"))
+    else:
+        recipes = mongo.db.recipes.find({"$text": {"$search": query}})
+    return render_template(
+        "recipes.html", page_title="Recipes", recipes=recipes)
+
+
 @app.route("/recipes/<recipe_name>")
 def recipe_page(recipe_name):
     this_recipe = {}
     recipes = mongo.db.recipes.find()
     for recipe in recipes:
-        if recipe["url"] == recipe_name:
+        if recipe["slug"] == recipe_name:
             this_recipe = recipe
     return render_template("recipe.html", recipe=this_recipe,)
 
@@ -54,7 +71,7 @@ def add_recipe():
             "ingredients": request.form.getlist("ingredients"),
             "description": request.form.get("description"),
             "image_url": request.form.get("url"),
-            "url": request.form.get(
+            "slug": request.form.get(
                 "recipe_name").lower().replace(" ", "-"),
             "created_by": session["user"]
         }
@@ -74,7 +91,7 @@ def edit_recipe(recipe_id):
             "ingredients": request.form.getlist("ingredients"),
             "description": request.form.get("description"),
             "image_url": request.form.get("url"),
-            "url": request.form.get(
+            "slug": request.form.get(
                 "recipe_name").lower().replace(" ", "-"),
             "created_by": session["user"]
         }
@@ -113,6 +130,7 @@ def sign_up():
             "email": request.form.get("email").lower()
 
         }
+
         mongo.db.users.insert_one(sign_up)
 
         session["user"] = request.form.get("new_username").lower()
@@ -203,6 +221,7 @@ def edit_password(user_id):
 @app.route("/delete_profile/<user_id>")
 def delete_profile(user_id):
     mongo.db.users.remove({"_id": ObjectId(user_id)})
+    mongo.db.recipes.remove({"created_by": session["user"]})
     flash("User deleted")
     session.pop("user")
     return redirect(url_for('sign_up', _external=True, _scheme='https'))
@@ -211,7 +230,7 @@ def delete_profile(user_id):
 @app.route("/week_menu_shuffle", methods=["GET", "POST"])
 def week_menu_shuffle():
     if request.method == "POST":
-        country = {"country": request.form.get("country")}
+        country = request.form.get("country")
         return redirect(url_for('week_menu', country=country))
     return render_template(
         "week-menu-shuffle.html",
@@ -221,10 +240,11 @@ def week_menu_shuffle():
 @app.route("/week_menu/<country>")
 def week_menu(country):
     print(country)
-    recipes = mongo.db.recipes.find({"country": country})
-    print(list(recipes))
+    recipes = [
+        recipe for recipe in mongo.db.recipes.aggregate(
+            [{"$match": {"country": country}}, {"$sample": {"size": 7}}])]
     return render_template("week-menu.html", recipes=recipes, country=country,
-                           page_title="Your Week Menu")
+                           page_title="Your Week Menu, {}".format(country))
 
 
 if __name__ == "__main__":

@@ -26,6 +26,7 @@
                     <button class="btn waves-effect waves-light submit-button" type="submit" name="sign_up">Edit Profile
                         <i class="material-icons right">send</i>
                     </button>
+                    <a href="{{url_for('profile', username=session['user'])}}" type="submit" name="add_recipe" class="waves-effect waves-light btn submit-button center">Cancel</a>    
                 </div>
                         </form>
                     </div>

@@ -31,18 +31,19 @@ https://stackoverflow.com/questions/10290621/how-do-i-partially-update-an-object
 How to update only some fields
 
 to do: 
--week menu shuffle
+-*week menu shuffle
 -add 10 recp. per country
 -*value in stars option? No
--list ingredients!
-=cancel button @ add recipe, and edit profile, and edit password
--search function @ recipes page
--pop up before deleting recipy or profile
+-*list ingredients!
+=*cancel button @ add recipe, and edit profile, and edit password
+-*search function @ recipes page
+-*pop up before deleting recipy or profile
 *-ingredients field big enough for text (textarea)
 *-log out when deleting profile (bug) 
--delete all recipes of profile?
--backend defensive programming
-=change url to slug
+-*delete all recipes of profile?
+-*backend defensive programming
+=*change url to slug
+-write readme
 
 
 recipes = mongo.db.recipes.find({"country": country})
