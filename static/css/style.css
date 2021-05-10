@@ -374,6 +374,12 @@ div.card-content.grey.lighten-4 {
     .enjoy {
     margin-top: 400px;
     }
+    h4 {
+        padding-bottom: 50px;
+        padding-left: 50px;
+        padding-right: 50px;
+        padding-top: 50px;
+    }
     
 }
 
@@ -394,10 +400,6 @@ div.card-content.grey.lighten-4 {
     .icon-profile {
         visibility: hidden;
         display: none;
-    }
-
-    .h4 {
-        padding: 50px 100px;
     }
     
 }

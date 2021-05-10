@@ -12,7 +12,7 @@
     <form class="col s12" method="POST" action="{{ url_for('edit_recipe', recipe_id=recipe._id )}}">
         <div class="row">
             <div class="input-field col s12 m6">
-                <input id="recipe_name" name="recipe_name" type="text" pattern="^[a-zA-Z ]{3,20}$" class="validate" value="{{recipe.recipe_name}}" required>
+                <input id="recipe_name" name="recipe_name" type="text" pattern="^[a-zA-Z ]{3,60}$" class="validate" value="{{recipe.recipe_name}}" required>
                 <label for="recipe_name">recipe Name</label>
             </div>
             <div class="input-field col s12 m6">
