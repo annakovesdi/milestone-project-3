@@ -1,87 +1,88 @@
 {% extends "base.html" %}
-
+<!--CSS link for countryselect Plugin-->
 {% block link %}
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='build/css/countrySelect.css') }}">
 {% endblock %}
+<!--Header Image-->
 {% block image %}
-<div class="hero-image add-recipe-image">
-    <div ></div>
+    <div class="hero-image add-recipe-image">
         <h2 class="page-heading center">{{ page_title }}</h2>
     </div>
-<div>
 {% endblock %}
+<!--Form to add recipe-->
 {% block content %}
-<div class="row container add-recipe">
-    <form class="col s12" method="POST" action="{{ url_for('add_recipe' )}}">
-        <div class="row">
-            <div class="input-field col s12 m6">
-                <input id="recipe_name" name="recipe_name" type="text" pattern="^[a-zA-Z ]{3,60}$" class="validate" required>
-                <label for="recipe_name">Recipe Name</label>
+    <div class="row container add-recipe">
+        <form class="col s12" method="POST" action="{{ url_for('add_recipe' )}}">
+            <div class="row">
+                <div class="input-field col s12 m6">
+                    <input id="recipe_name" name="recipe_name" type="text" pattern="^[a-zA-Z ]{3,60}$" class="validate"
+                        required>
+                    <label for="recipe_name">Recipe Name</label>
+                </div>
+                <div class="input-field col s12 m6">
+                    <input id="time" type="text" name="time" class="validate">
+                    <label for="time">Prep Time in minutes</label>
+                </div>
             </div>
-            <div class="input-field col s12 m6">
-                <input id="time" type="text" name="time" class="validate">
-                <label for="time">Prep Time in minutes</label>
+            <div class="row center">
+                <input type="text" id="country" name="country">
             </div>
-        </div>
-        <div class="row center">
-            <input type="text" id="country" name="country">
-        </div>
-        <div class="row">
-            <div class="input-field col s12 m3 l3">
-                <input id="ingredient1" type="text" name="ingredients" class="validate materialize-textarea" required>
-                <label for="ingredients">Ingredient, amount</label>
+            <div class="row">
+                <div class="input-field col s12 m3 l3">
+                    <input id="ingredient1" type="text" name="ingredients" class="validate materialize-textarea" required>
+                    <label for="ingredients">Ingredient, amount</label>
+                </div>
+                <div class="input-field col s12 m3 l3">
+                    <input id="ingredient2" type="text" name="ingredients" class="validate materialize-textarea">
+                    <label for="ingredients">Ingredient, amount</label>
+                </div>
+                <div class="input-field col s12 m3 l3">
+                    <input id="ingredient3" type="text" name="ingredients" class="validate materialize-textarea">
+                    <label for="ingredients">Ingredient, amount</label>
+                </div>
+                <div class="input-field col s12 m3 l3">
+                    <input id="ingredient4" type="text" name="ingredients" class="validate materialize-textarea">
+                    <label for="ingredients">Ingredient, amount</label>
+                </div>
             </div>
-            <div class="input-field col s12 m3 l3">
-                <input id="ingredient2" type="text" name="ingredients" class="validate materialize-textarea">
-                <label for="ingredients">Ingredient, amount</label>
+            <div class="row">
+                <div class="input-field col s12 m3 l3">
+                    <input id="ingredient5" type="text" name="ingredients" class="validate materialize-textarea">
+                    <label for="ingredients">Ingredient, amount</label>
+                </div>
+                <div class="input-field col s12 m3 l3">
+                    <input id="ingredient6" type="text" name="ingredients" class="validate materialize-textarea">
+                    <label for="ingredients">Ingredient, amount</label>
+                </div>
+                <div class="input-field col s12 m3 l3">
+                    <input id="ingredient7" type="text" name="ingredients" class="validate materialize-textarea">
+                    <label for="ingredients">Ingredient, amount</label>
+                </div>
+                <div class="input-field col s12 m3 l3">
+                    <input id="ingredient8" type="text" name="ingredients" class="validate materialize-textarea">
+                    <label for="ingredients">Ingredient, amount</label>
+                </div>
             </div>
-            <div class="input-field col s12 m3 l3">
-                <input id="ingredient3" type="text" name="ingredients" class="validate materialize-textarea">
-                <label for="ingredients">Ingredient, amount</label>
+            <div class="row">
+                <div class="input-field col s12">
+                    <textarea id="description" name="description" class="validate materialize-textarea" required></textarea>
+                    <label for="description">Description</label>
+                </div>
             </div>
-            <div class="input-field col s12 m3 l3">
-                <input id="ingredient4" type="text" name="ingredients" class="validate materialize-textarea">
-                <label for="ingredients">Ingredient, amount</label>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="url" type="text" name="url" class="validate" required>
+                    <label for="url">Image url</label>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s12 m3 l3">
-                <input id="ingredient5" type="text" name="ingredients" class="validate materialize-textarea">
-                <label for="ingredients">Ingredient, amount</label>
-            </div>
-            <div class="input-field col s12 m3 l3">
-                <input id="ingredient6" type="text" name="ingredients" class="validate materialize-textarea">
-                <label for="ingredients">Ingredient, amount</label>
-            </div>
-            <div class="input-field col s12 m3 l3">
-                <input id="ingredient7" type="text" name="ingredients" class="validate materialize-textarea">
-                <label for="ingredients">Ingredient, amount</label>
-            </div>
-            <div class="input-field col s12 m3 l3">
-                <input id="ingredient8" type="text" name="ingredients" class="validate materialize-textarea">
-                <label for="ingredients">Ingredient, amount</label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s12">
-                <textarea id="description" type="text" name="description" class="validate materialize-textarea" required></textarea>
-                <label for="description">Description</label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s12">
-                <input id="url" type="text" name="url" class="validate" required>
-                <label for="url">Image url</label>
-            </div>
-        </div>
-        <button type="submit" name="add_recipe" class="waves-effect waves-light btn submit-button center">Add
-            recipe</button>
-        <a href="{{url_for('recipes')}}" type="submit" name="add_recipe" class="waves-effect waves-light btn submit-button center">Cancel</a>    
-    </form>
-</div>
-
+            <button type="submit" name="add_recipe" class="waves-effect waves-light btn submit-button center">Add
+                recipe</button>
+            <a href="{{url_for('recipes')}}" type="submit" name="add_recipe"
+                class="waves-effect waves-light btn submit-button center">Cancel</a>
+        </form>
+    </div>
 {% endblock %}
-
+<!--Scripts for Countryselect Plugin-->
 {% block script %}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='build/js/countrySelect.js') }}"></script>

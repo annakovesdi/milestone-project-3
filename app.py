@@ -83,6 +83,9 @@ def add_recipe():
 
 @app.route("/edit_recipe/<recipe_id>", methods=["GET", "POST"])
 def edit_recipe(recipe_id):
+    if 'user' not in session:
+        flash("Please log in")
+        return redirect(url_for("log_in"))
     if request.method == "POST":
         edited_recipe = {
             "recipe_name": request.form.get("recipe_name"),
@@ -120,7 +123,7 @@ def sign_up():
         if existing_user:
             flash("Username already exists")
             return redirect(url_for(
-                "sign_in", _external=True, _scheme='https'))
+                "sign_up", _external=True, _scheme='https'))
 
         sign_up = {
             "username": request.form.get("new_username").lower(),

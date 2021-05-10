@@ -62,3 +62,13 @@ def week_menu(country):
     return render_template("week-menu.html", country=this_country,
                            page_title="Your {} Week Menu".format(
                                request.form.get("country")))
+
+
+
+-autocomplete for search
+-url to slug in profile
+-delete recipe 
+-check flash styling
+-already extisting username sign in sign up could not build route 
+
+-remove session cookie when deleteing profile

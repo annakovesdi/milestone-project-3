@@ -1,40 +1,38 @@
 {% extends "base.html" %}
 {% block image %}
-<div class="hero-image index-image">
-    <div ></div>
+<!--Header Image-->
+    <div class="hero-image index-image">
         <h1 class="hero-text">Eating the World</h1>
     </div>
-<div>
 {% endblock %}
-{% block content %}
-<section>
-    <div>
-        <h2 class="red-color">...One meal at a time!</h2>
-    </div>
 
-    <div class="row">
-        {% for recipe in recipes[:3] %}
-        <div class="col s12 m4">
-            <div class="card">
-                <div class="card-image">
-                    <img src="{{ recipe.image_url }}">
-                    <a class="btn-floating halfway-fab waves-effect waves-light red" href="/recipes/{{recipe.slug}}"><i
-                            class="material-icons">add</i></a>
-                </div>
-                <div class="card-content">
-                    <span class="card-title">
-                        {{ recipe.recipe_name|title }}
-                    </span>
-                    <p>
-                        Country: {{ recipe.country|title }}
-                    </p>
+{% block content %}
+<!-- Catch Frase-->
+    <section>
+        <div>
+            <h2 class="red-color">...One meal at a time!</h2>
+        </div>
+<!--Three aggregated recipes-->
+        <div class="row">
+            {% for recipe in recipes[:3] %}
+            <div class="col s12 m4">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="{{ recipe.image_url }}" alt="Image of {{ recipe.recipe_name }} dish">
+                        <a class="btn-floating halfway-fab waves-effect waves-light red"
+                            href="/recipes/{{recipe.slug}}"><i class="material-icons">add</i></a>
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title">
+                            {{ recipe.recipe_name|title }}
+                        </span>
+                        <p>
+                            Country: {{ recipe.country|title }}
+                        </p>
+                    </div>
                 </div>
             </div>
+            {% endfor %}
         </div>
-        {% endfor %}
-    </div>
-</section>
-
-</div>
-
+    </section>
 {% endblock %}
