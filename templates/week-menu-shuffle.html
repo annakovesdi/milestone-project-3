@@ -1,15 +1,15 @@
 {% extends "base.html" %}
-
+<!--CSS for Countryselect-->
 {% block link %}
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='build/css/countrySelect.css') }}">
 {% endblock %}
+<!--Header Image-->
 {% block image %}
-<div class="hero-image shuffle-image">
-    <div ></div>
+    <div class="hero-image shuffle-image">
         <h2 class="page-heading center">{{ page_title }}</h2>
     </div>
-<div>
 {% endblock %}
+<!--Countryselect search field for week menu-->
 {% block content %}
 <div class="col s12 m7">
     <div class="shuffle-text center">
@@ -28,10 +28,10 @@
     </div>
 </div>
 {% endblock %}
-
+<!--Scripts for Countryselect-->
 {% block script %}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='build/js/countrySelect.js') }}"></script>
+<script src="{{ url_for('static', filename='build/js/countrySelect.js') }}"></script>
 <script>
     $("#country").countrySelect();
   </script>

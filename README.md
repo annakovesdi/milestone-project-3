@@ -66,9 +66,12 @@ def week_menu(country):
 
 
 -autocomplete for search
--url to slug in profile
+-url to slug in profile bug
+-could not build route from delete recipe and delete profile-could not build route from cancel buttons (url slug bug)
 -delete recipe 
 -check flash styling
 -already extisting username sign in sign up could not build route 
 
 -remove session cookie when deleteing profile
+
+-bug to fix: mobile friendly alert message
