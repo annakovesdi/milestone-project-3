@@ -1,84 +1,99 @@
 {% extends "base.html" %}
-
+<!--CSS link for Countryselect-->
 {% block link %}
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='build/css/countrySelect.css') }}">
 {% endblock %}
-
+<!--Edit Recipe Form-->
 {% block content %}
-
-<h2 class="center">{{ page_title }}</h2>
-
-<div class="row container">
-    <form class="col s12" method="POST" action="{{ url_for('edit_recipe', recipe_id=recipe._id )}}">
-        <div class="row">
-            <div class="input-field col s12 m6">
-                <input id="recipe_name" name="recipe_name" type="text" pattern="^[a-zA-Z ]{3,60}$" class="validate" value="{{recipe.recipe_name}}" required>
-                <label for="recipe_name">recipe Name</label>
+    <h2 class="center">{{ page_title }}</h2>
+    <div class="row container">
+        <form class="col s12" method="POST" action="{{ url_for('edit_recipe', recipe_id=recipe._id )}}">
+            <div class="row">
+                <!--Recipe name-->
+                <div class="input-field col s12 m6">
+                    <input id="recipe_name" name="recipe_name" type="text" pattern="^[a-zA-Z ]{3,60}$" class="validate"
+                        value="{{recipe.recipe_name}}" required>
+                    <label for="recipe_name">recipe Name</label>
+                </div>
+                <!--Prep time-->
+                <div class="input-field col s12 m6">
+                    <input id="time" type="text" name="time" class="validate" value="{{recipe.time}}">
+                    <label for="time">Prep Time in minutes</label>
+                </div>
             </div>
-            <div class="input-field col s12 m6">
-                <input id="time" type="text" name="time" class="validate" value="{{recipe.time}}">
-                <label for="time">Prep Time in minutes</label>
+            <!--Countryselect-->
+            <div class="row center">
+                <input type="text" id="country" name="country" value="{{recipe.country}}">
             </div>
-        </div>
-        <div class="row center">
-            <input type="text" id="country" name="country" value="{{recipe.country}}">
-        </div>
-        <div class="row">
-            <div class="input-field col s12 m3 l3">
-                <input id="ingredient1" type="text" name="ingredients" class="validate materialize-textarea" value="{{recipe.ingredients[0]}}" required>
-                <label for="ingredients">Ingredient, amount</label>
+            <!--Ingredients, one by one-->
+            <div class="row">
+                <div class="input-field col s12 m3 l3">
+                    <input id="ingredient1" type="text" name="ingredients" class="validate materialize-textarea"
+                        value="{{recipe.ingredients[0]}}" required>
+                    <label for="ingredients">Ingredient, amount</label>
+                </div>
+                <div class="input-field col s12 m3 l3">
+                    <input id="ingredient2" type="text" name="ingredients" class="validate materialize-textarea"
+                        value="{{recipe.ingredients[1]}}">
+                    <label for="ingredients">Ingredient, amount</label>
+                </div>
+                <div class="input-field col s12 m3 l3">
+                    <input id="ingredient3" type="text" name="ingredients" class="validate materialize-textarea"
+                        value="{{recipe.ingredients[2]}}">
+                    <label for="ingredients">Ingredient, amount</label>
+                </div>
+                <div class="input-field col s12 m3 l3">
+                    <input id="ingredient4" type="text" name="ingredients" class="validate materialize-textarea"
+                        value="{{recipe.ingredients[3]}}">
+                    <label for="ingredients">Ingredient, amount</label>
+                </div>
             </div>
-            <div class="input-field col s12 m3 l3">
-                <input id="ingredient2" type="text" name="ingredients" class="validate materialize-textarea" value="{{recipe.ingredients[1]}}">
-                <label for="ingredients">Ingredient, amount</label>
+            <div class="row">
+                <div class="input-field col s12 m3 l3">
+                    <input id="ingredient5" type="text" name="ingredients" class="validate materialize-textarea"
+                        value="{{recipe.ingredients[4]}}">
+                    <label for="ingredients">Ingredient, amount</label>
+                </div>
+                <div class="input-field col s12 m3 l3">
+                    <input id="ingredient6" type="text" name="ingredients" class="validate materialize-textarea"
+                        value="{{recipe.ingredients[5]}}">
+                    <label for="ingredients">Ingredient, amount</label>
+                </div>
+                <div class="input-field col s12 m3 l3">
+                    <input id="ingredient7" type="text" name="ingredients" class="validate materialize-textarea"
+                        value="{{recipe.ingredients[6]}}">
+                    <label for="ingredients">Ingredient, amount</label>
+                </div>
+                <div class="input-field col s12 m3 l3">
+                    <input id="ingredient8" type="text" name="ingredients" class="validate materialize-textarea"
+                        value="{{recipe.ingredients[7]}}">
+                    <label for="ingredients">Ingredient, amount</label>
+                </div>
             </div>
-            <div class="input-field col s12 m3 l3">
-                <input id="ingredient3" type="text" name="ingredients" class="validate materialize-textarea" value="{{recipe.ingredients[2]}}">
-                <label for="ingredients">Ingredient, amount</label>
+            <!--Description-->
+            <div class="row">
+                <div class="input-field col s12">
+                    <textarea id="description" type="text" name="description"
+                        class="validate materialize-textarea description-field" required>{{recipe.description}}</textarea>
+                    <label for="description">Description</label>
+                </div>
             </div>
-            <div class="input-field col s12 m3 l3">
-                <input id="ingredient4" type="text" name="ingredients" class="validate materialize-textarea" value="{{recipe.ingredients[3]}}">
-                <label for="ingredients">Ingredient, amount</label>
+            <!--Image Url-->
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="url" type="text" name="url" class="validate" value="{{recipe.image_url}}" required>
+                    <label for="url">Image url</label>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s12 m3 l3">
-                <input id="ingredient5" type="text" name="ingredients" class="validate materialize-textarea" value="{{recipe.ingredients[4]}}">
-                <label for="ingredients">Ingredient, amount</label>
-            </div>
-            <div class="input-field col s12 m3 l3">
-                <input id="ingredient6" type="text" name="ingredients" class="validate materialize-textarea" value="{{recipe.ingredients[5]}}">
-                <label for="ingredients">Ingredient, amount</label>
-            </div>
-            <div class="input-field col s12 m3 l3">
-                <input id="ingredient7" type="text" name="ingredients" class="validate materialize-textarea" value="{{recipe.ingredients[6]}}">
-                <label for="ingredients">Ingredient, amount</label>
-            </div>
-            <div class="input-field col s12 m3 l3">
-                <input id="ingredient8" type="text" name="ingredients" class="validate materialize-textarea" value="{{recipe.ingredients[7]}}">
-                <label for="ingredients">Ingredient, amount</label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s12">
-                <textarea id="description" type="text" name="description" 
-                    class="validate materialize-textarea description-field" required>{{recipe.description}}</textarea>
-                <label for="description">Description</label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s12">
-                <input id="url" type="text" name="url" class="validate" value="{{recipe.image_url}}" required>
-                <label for="url">Image url</label>
-            </div>
-        </div>
-        <button type="submit" name="add_recipe" class="waves-effect waves-light btn submit-button center">Edit recipe</button>
-        <a href="/recipes/{{recipe.slug}}" type="submit" name="add_recipe" class="waves-effect waves-light btn submit-button center">Cancel</a>
-    </form>
-</div>
-
+            <button type="submit" name="add_recipe" class="waves-effect waves-light btn submit-button center">Edit
+                recipe</button>
+            <a href="/recipes/{{recipe.slug}}" type="submit" name="add_recipe"
+                class="waves-effect waves-light btn submit-button center">Cancel</a>
+        </form>
+    </div>
+    <br class="magrin-bottom">
 {% endblock %}
-
+<!--Scripts for Countryselect-->
 {% block script %}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='build/js/countrySelect.js') }}"></script>

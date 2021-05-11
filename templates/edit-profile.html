@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+<!--Edit Name and email form-->
 {% block content %}
 <div class="col s12 m7">
     <h2 class="header center">{{ page_title }}</h2>
@@ -11,27 +12,30 @@
                             <div class="row">
                                 <div class="input-field">
                                     <i class="material-icons prefix">face</i>
-                                    <input id="name" type="text" class="validate" name="name" pattern="^[a-zA-Z ]{3,20}$" value="{{user.name}}" required>
+                                    <input id="name" type="text" class="validate" name="name"
+                                        pattern="^[a-zA-Z ]{3,20}$" value="{{user.name}}" required>
                                     <label for="name">Name</label>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="input-field">
                                     <i class="material-icons prefix">email</i>
-                                    <input id="email" type="email" class="validate" name="email" value="{{user.email}}" required>
+                                    <input id="email" type="email" class="validate" name="email" value="{{user.email}}"
+                                        required>
                                     <label for="email">Email Address</label>
                                 </div>
                             </div>
                             <div class="card-action center">
-                    <button class="btn waves-effect waves-light submit-button" type="submit" name="sign_up">Edit Profile
-                        <i class="material-icons right">send</i>
-                    </button>
-                    <a href="{{url_for('profile', username=session['user'])}}" type="submit" name="add_recipe" class="waves-effect waves-light btn submit-button center">Cancel</a>    
-                </div>
+                                <button class="btn waves-effect waves-light submit-button" type="submit"
+                                    name="sign_up">Edit Profile
+                                    <i class="material-icons right">send</i>
+                                </button>
+                                <a href="{{url_for('profile', username=session['user'])}}"
+                                    class="waves-effect waves-light btn submit-button center">Cancel</a>
+                            </div>
                         </form>
                     </div>
                 </div>
-                
             </div>
         </div>
     </div>

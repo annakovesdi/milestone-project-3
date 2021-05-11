@@ -14,19 +14,23 @@
     <div class="row container add-recipe">
         <form class="col s12" method="POST" action="{{ url_for('add_recipe' )}}">
             <div class="row">
+                <!--Recipe name-->
                 <div class="input-field col s12 m6">
                     <input id="recipe_name" name="recipe_name" type="text" pattern="^[a-zA-Z ]{3,60}$" class="validate"
                         required>
                     <label for="recipe_name">Recipe Name</label>
                 </div>
+                <!--Prep time-->
                 <div class="input-field col s12 m6">
                     <input id="time" type="text" name="time" class="validate">
                     <label for="time">Prep Time in minutes</label>
                 </div>
             </div>
+            <!--Countryselect-->
             <div class="row center">
                 <input type="text" id="country" name="country">
             </div>
+            <!--Ingredients, one by one-->
             <div class="row">
                 <div class="input-field col s12 m3 l3">
                     <input id="ingredient1" type="text" name="ingredients" class="validate materialize-textarea" required>
@@ -63,12 +67,14 @@
                     <label for="ingredients">Ingredient, amount</label>
                 </div>
             </div>
+            <!--Description-->
             <div class="row">
                 <div class="input-field col s12">
                     <textarea id="description" name="description" class="validate materialize-textarea" required></textarea>
                     <label for="description">Description</label>
                 </div>
             </div>
+            <!--Image Url-->
             <div class="row">
                 <div class="input-field col s12">
                     <input id="url" type="text" name="url" class="validate" required>

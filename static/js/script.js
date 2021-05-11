@@ -4,7 +4,3 @@ $(document).ready(function () {
     $('.modal').modal();
     $('.trigger-modal').modal();
 });
-
-function onChangeCallback(ctr) {
-    console.log("The country was changed: " + ctr);
-}
