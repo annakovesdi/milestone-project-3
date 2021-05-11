@@ -1,34 +1,42 @@
 {% extends "base.html" %}
+<!--Header Image-->
 {% block image %}
-<div class="hero-image profile-image">
-    <div ></div>
+    <div class="hero-image profile-image">
         <h2 class="page-heading center">{{ user.name }}</h2>
     </div>
-<div>
 {% endblock %}
-{% block content %}   
- <div class="row">
-                            <div class="profile-card">
-                                <div class="card-content white-text center">
-                                    <a href="{{ url_for('edit_profile', user_id=user._id )}}" class="waves-effect waves-light submit-button btn profile-button"><i class="material-icons icon-profile left">face</i>Edit Profile</a>
-                                    <a href="{{ url_for('edit_password', user_id=user._id )}}" class="waves-effect waves-light btn submit-button profile-button"><i class="material-icons icon-profile left">edit</i>Edit Password</a>
-                                    <a href="#modal1" class="waves-effect waves-light btn submit-button profile-button modal-trigger"><i class="material-icons icon-profile left">delete</i>Delete Profile</a>
-                                
-                                <!-- Modal Structure -->
-                                <div id="modal1" class="modal">
-                                    <div class="modal-content">
-                                        <h4 class="darker">Are you sure you want to delete your profile?</h4>
-                                        <p class="darker">This action cannot be undone. All recipes created with this profile will be deleted.</p>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <a href="{{ url_for('profile', username=session['user'] )}}" class="modal-close waves-effect waves-green btn-flat">No</a>
-                                        <a href="{{ url_for('delete_profile', user_id=user._id )}}" class="modal-close waves-effect waves-green btn-flat">Yes</a>
-                                    </div>
-                                </div>
-                                </div>
-                                </div>
-                                </div>
-
+{% block content %}
+<!--Edit profile buttons-->   
+<div class="row">
+    <div class="profile-card">
+        <div class="card-content white-text center edit-profile-buttons">
+            <a href="{{ url_for('edit_profile', user_id=user._id )}}"
+                class="col s12 m4  waves-effect waves-light submit-button btn profile-button">
+                <i class="material-icons icon-profile left">face</i>Edit Profile</a>
+            <a href="{{ url_for('edit_password', user_id=user._id )}}"
+                class="col s12 m4 waves-effect waves-light btn submit-button profile-button">
+                <i class="material-icons icon-profile left">edit</i>Edit Password</a>
+            <a href="#modal1"
+                class="col s12 m4 waves-effect waves-light btn submit-button profile-button modal-trigger">
+                <i class="material-icons icon-profile left">delete</i>Delete Profile</a>
+<!-- Modal Structure -->
+            <div id="modal1" class="modal">
+                <div class="modal-content">
+                    <h4 class="darker">Are you sure you want to delete your profile?</h4>
+                    <p class="darker">This action cannot be undone. All recipes created with this profile will be
+                        deleted.</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="{{ url_for('profile', username=session['user'] )}}"
+                        class="modal-close waves-effect waves-green btn-flat">No</a>
+                    <a href="{{ url_for('delete_profile', user_id=user._id )}}"
+                        class="modal-close waves-effect waves-green btn-flat">Yes</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--User's recipes-->
 <h2 class="center red-color">My Recipes</h2>
 <div class="row">
     {% for recipe in user_recipes %}
@@ -36,8 +44,8 @@
         <div class="card">
             <div class="card-image">
                 <img src="{{ recipe.image_url }}">
-                <a class="btn-floating halfway-fab waves-effect waves-light red" href="/recipes/{{recipe.slug}}"><i
-                        class="material-icons">add</i></a>
+                <a class="btn-floating halfway-fab waves-effect waves-light red" href="/recipes/{{recipe.slug}}">
+                <i class="material-icons">add</i></a>
             </div>
             <div class="card-content">
                 <span class="card-title">
@@ -51,6 +59,4 @@
     </div>
     {% endfor %}
 </div>
-
-
 {% endblock %}
