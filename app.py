@@ -21,12 +21,13 @@ mongo = PyMongo(app)
 @app.route("/")
 @app.route("/index")
 def index():
+    # Show 3 different recipes on page every time reloaded: Tim, tutor
     recipes = [
         recipe for recipe in mongo.db.recipes.aggregate(
             [{"$sample": {"size": 3}}])]
     return render_template("index.html", recipes=recipes)
 
-
+# displays all recipes
 @app.route("/recipes")
 def recipes():
     recipes = mongo.db.recipes.find()
@@ -34,15 +35,14 @@ def recipes():
         "recipes.html", page_title="Recipes", recipes=recipes)
 
 
-# Search Recipes
+# Search all recipes
 @app.route("/search", methods=["GET", "POST"])
 def search():
     query = request.form.get("query")
     recipes = mongo.db.recipes.find({"$text": {"$search": query}})
 
     # No Search Results: https://www.geeksforgeeks.org/how-to-check-if-the-pymongo-cursor-is-empty/
-    results = list(recipes)
-    if len(results) == 0:
+    if len(list(recipes)) == 0:
         flash("No Recipes Found")
         return redirect(url_for("recipes"))
     else:
@@ -51,6 +51,7 @@ def search():
         "recipes.html", page_title="Recipes", recipes=recipes)
 
 
+# Displays individual recipe
 @app.route("/recipes/<recipe_name>")
 def recipe_page(recipe_name):
     this_recipe = {}
@@ -61,6 +62,7 @@ def recipe_page(recipe_name):
     return render_template("recipe.html", recipe=this_recipe,)
 
 
+# Add recipe to db
 @app.route("/add_recipe", methods=["GET", "POST"])
 def add_recipe():
     if request.method == "POST":
@@ -83,8 +85,10 @@ def add_recipe():
     return render_template("add-recipe.html", page_title="Add Recipe")
 
 
+# edit user recipe
 @app.route("/edit_recipe/<recipe_id>", methods=["GET", "POST"])
 def edit_recipe(recipe_id):
+    # if user is not logged in, redirect: Mentor, Victor
     if 'user' not in session:
         flash("Please log in")
         return redirect(url_for("log_in"))
@@ -109,6 +113,7 @@ def edit_recipe(recipe_id):
         "edit-recipe.html", page_title="Edit Recipe", recipe=recipe)
 
 
+# Delete recipe from db
 @app.route("/delete_recipe/<recipe_id>")
 def delete_recipe(recipe_id):
     mongo.db.recipes.remove({"_id": ObjectId(recipe_id)})
@@ -116,12 +121,13 @@ def delete_recipe(recipe_id):
     return redirect(url_for('recipes', _external=True, _scheme='https'))
 
 
+# sign up new user
 @app.route("/sign_up", methods=["GET", "POST"])
 def sign_up():
     if request.method == "POST":
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("new_username").lower()})
-
+        # check if username already exists
         if existing_user:
             flash("Username already exists")
             return redirect(url_for(
@@ -137,7 +143,7 @@ def sign_up():
         }
 
         mongo.db.users.insert_one(sign_up)
-
+        # set session user cookie
         session["user"] = request.form.get("new_username").lower()
         flash("You are now signed up, welcome!")
         return redirect(url_for(
@@ -147,6 +153,7 @@ def sign_up():
     return render_template("sign-up.html", page_title="Sign Up")
 
 
+# log in
 @app.route("/log_in", methods=["GET", "POST"])
 def log_in():
     if request.method == "POST":
@@ -172,6 +179,7 @@ def log_in():
         "log-in.html", page_title="Log In")
 
 
+# log out
 @app.route("/log_out")
 def log_out():
     flash("You have been logged out")
@@ -179,6 +187,7 @@ def log_out():
     return redirect(url_for("log_in", _external=True, _scheme='https'))
 
 
+# display profile page with user recipes
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
     user = mongo.db.users.find_one(
@@ -188,6 +197,7 @@ def profile(username):
         "profile.html", user=user, user_recipes=user_recipes)
 
 
+# edit profile information in db
 @app.route("/edit_profile/<user_id>", methods=["GET", "POST"])
 def edit_profile(user_id):
     if request.method == "POST":
@@ -207,6 +217,7 @@ def edit_profile(user_id):
         "edit-profile.html", page_title="Edit Profile", user=user)
 
 
+# edit password
 @app.route("/edit_password/<user_id>", methods=["GET", "POST"])
 def edit_password(user_id):
     if request.method == "POST":
@@ -223,6 +234,7 @@ def edit_password(user_id):
         "edit-password.html", page_title="Edit Password", user=user)
 
 
+# delete profile and all user recipes
 @app.route("/delete_profile/<user_id>")
 def delete_profile(user_id):
     mongo.db.users.remove({"_id": ObjectId(user_id)})
@@ -232,6 +244,7 @@ def delete_profile(user_id):
     return redirect(url_for('sign_up', _external=True, _scheme='https'))
 
 
+# Get country from week-menu-shuffle form...:Jo, Tutor
 @app.route("/week_menu_shuffle", methods=["GET", "POST"])
 def week_menu_shuffle():
     if request.method == "POST":
@@ -242,6 +255,7 @@ def week_menu_shuffle():
         page_title="Week Menu Shuffle")
 
 
+# ...and display 7 aggregated recipes on week-menu page: Igor, Tutor
 @app.route("/week_menu/<country>")
 def week_menu(country):
     print(country)
