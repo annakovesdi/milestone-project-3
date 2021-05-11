@@ -338,6 +338,10 @@ div.card-content.grey.lighten-4 {
     margin-bottom: 60px;
 }
 
+.recipe-description {
+    padding-bottom: 20px;
+}
+
 /*-------------------------Recipes*/
 
 .recipes-image {
@@ -425,6 +429,10 @@ div.card-content.grey.lighten-4 {
     }
     a.modal-close.waves-effect {
         padding: 0px 40px 0px 40px;
+    }
+    .enjoy {
+        margin-top: 100px;
+        padding-top: 20px;
     }
 }
 

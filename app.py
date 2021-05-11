@@ -77,7 +77,9 @@ def add_recipe():
         }
         mongo.db.recipes.insert_one(recipe)
         flash("recipe added")
-        return redirect(url_for('recipes', _external=True, _scheme='https'))
+        return redirect(url_for(
+            'profile', username=session["user"],
+            _external=True, _scheme='https'))
     return render_template("add-recipe.html", page_title="Add Recipe")
 
 

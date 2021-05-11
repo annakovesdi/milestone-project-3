@@ -2,68 +2,77 @@
 {% block content %}
 <!--Recipe Card-->
 <div class="recipe-card">
-        <div class="card">
-            <div class="card-image">
-                <img src="{{ recipe.image_url }}" alt="Image of the dish {{ recipe.name }}">
-            </div>
-            <div class="card-content">
-                <h2 class="center red-color">{{ recipe.recipe_name|title }}</h2>
-                <p class="bold center">Country: {{ recipe.country|title }}</p>
+    <div class="card">
+        <div class="card-image">
+            <img src="{{ recipe.image_url }}" alt="Image of the dish {{ recipe.name }}">
+        </div>
+        <div class="card-content">
+            <h2 class="center red-color">{{ recipe.recipe_name|title }}</h2>
+            <p class="bold center">Country: {{ recipe.country|title }}</p>
 
-            </div>
-            <div class="card-tabs">
-                <ul class="tabs tabs-fixed-width">
-                    <li class="tab"><a href="#ingredients">Ingredients</a></li>
-                    <li class="tab"><a href="#description">Description</a></li>
-                    <li class="tab"><a class="active" href="#basics">Basics</a></li>
+        </div>
+        <!--3 Tabs to choose-->
+        <div class="card-tabs">
+            <ul class="tabs tabs-fixed-width">
+                <li class="tab"><a href="#ingredients">Ingredients</a></li>
+                <li class="tab"><a href="#description">Description</a></li>
+                <li class="tab"><a class="active" href="#basics">Basics</a></li>
+            </ul>
+        </div>
+        <!--Tab 1, ingredients content-->
+        <div class="card-content grey lighten-4">
+            <div id="ingredients">
+                <h3 class="bold">Ingredients</h3>
+                <hr>
+                <ul class="left">
+                    {% for ingredient in recipe.ingredients %}
+                    <li>{{ ingredient }}</li>
+                    {% endfor %}
                 </ul>
-            </div>
-            <div class="card-content grey lighten-4">
-                <div id="ingredients">
-                    <h3 class="bold">Ingredients</h3>
-                    <hr>
-                    <ul class="left">
-                        {% for ingredient in recipe.ingredients %}
-                        <li>{{ ingredient }}</li>
-                        {% endfor %}
-                    </ul>
 
-                </div>
-                <div id="description">
-                    <h3 class="bold">Description</h3>
-                    <hr>
-                    <p class="left">{{ recipe.description }}</p>
-                </div>
-                <div id="basics">
-                    <h3 class="bold">Basics</h3>
-                    <hr>
-                    <p class="left">Name: {{ recipe.recipe_name|title }}</p><br>
-                    <p class="left">Prep time in minutes: {{ recipe.time }}</p><br>
-                    <p class="left">Country: {{ recipe.country }}</p><br>
-                    <hr>
-                    <p class="left"><em>Created by: {{ recipe.created_by|title }}</em></p>
-                    <br class="margin-bottom">
-                    <div class="row edit-delete-card">
-                            <div class="card transparent">
-                                {% if session.user|lower == recipe.created_by|lower %}
-                                <div class="card-content white-text center">
-                                    <a href="{{ url_for('edit_recipe', recipe_id=recipe._id) }}" class="waves-effect waves-light btn submit-button"><i class="material-icons left">create</i>Edit recipe</a>
-                                    <a href="#modal1" class="waves-effect waves-light btn submit-button modal-trigger"><i class="material-icons left">delete</i>Delete Recipe</a>
-                                    <!-- Modal Structure -->
-                                <div id="modal1" class="modal">
-                                    <div class="modal-content">
-                                        <h4 class="darker">Are you sure you want to delete this recipe?</h4>
-                                        <p class="darker">This action cannot be undone.</p>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <a href="/recipes/{{recipe.slug}}" class="modal-close waves-effect waves-green btn-flat">No</a>
-                                        <a href="{{ url_for('delete_recipe', recipe_id=recipe._id) }}" class="modal-close waves-effect waves-green btn-flat red-color">Yes</a>
-                                    </div>
+            </div>
+            <!--Tab 2, description content-->
+            <div id="description">
+                <h3 class="bold">Description</h3>
+                <hr>
+                <p class="left recipe-description">{{ recipe.description }}</p>
+            </div>
+            <!--Tab 3, basics content-->
+            <div id="basics">
+                <h3 class="bold">Basics</h3>
+                <hr>
+                <p class="left">Name: {{ recipe.recipe_name|title }}</p><br>
+                <p class="left">Prep time in minutes: {{ recipe.time }}</p><br>
+                <p class="left">Country: {{ recipe.country }}</p><br>
+                <hr>
+                <p class="left"><em>Created by: {{ recipe.created_by|title }}</em></p>
+                <br class="margin-bottom">
+                <div class="row edit-delete-card">
+                    <div class="card transparent">
+                        {% if session.user|lower == recipe.created_by|lower %}
+                        <div class="card-content white-text center">
+                            <a href="{{ url_for('edit_recipe', recipe_id=recipe._id) }}"
+                                class="waves-effect waves-light btn submit-button"><i
+                                    class="material-icons left">create</i>Edit recipe</a>
+                            <a href="#modal1" class="waves-effect waves-light btn submit-button modal-trigger"><i
+                                    class="material-icons left">delete</i>Delete Recipe</a>
+                            <!-- Modal Structure -->
+                            <div id="modal1" class="modal">
+                                <div class="modal-content">
+                                    <h4 class="darker">Are you sure you want to delete this recipe?</h4>
+                                    <p class="darker">This action cannot be undone.</p>
                                 </div>
+                                <div class="modal-footer">
+                                    <a href="/recipes/{{recipe.slug}}"
+                                        class="modal-close waves-effect waves-green btn-flat">No</a>
+                                    <a href="{{ url_for('delete_recipe', recipe_id=recipe._id) }}"
+                                        class="modal-close waves-effect waves-green btn-flat red-color">Yes</a>
                                 </div>
-                                {% endif %}
+                            </div>
                         </div>
+                        {% endif %}
                     </div>
+                </div>
             </div>
             <h3 class="bold center enjoy">Enjoy!</h3>
             <div class="card-action center">
@@ -71,7 +80,6 @@
             </div>
         </div>
     </div>
-
-    </div>
+</div>
 
 {% endblock %}

@@ -1,11 +1,11 @@
 {% extends "base.html" %}
+<!--Header Image-->
 {% block image %}
 <div class="hero-image sign-up-image">
-    <div ></div>
-        <h2 class="page-heading center">{{ page_title }}</h2>
-    </div>
-<div>
+    <h2 class="page-heading center">{{ page_title }}</h2>
+</div>
 {% endblock %}
+<!--Registration Form-->
 {% block content %}
 <div class="col s12 m7">
     <div class="form-card-parent">
@@ -15,42 +15,48 @@
                     <div class="row">
                         <form class="col s12" method="POST" action="{{ url_for('sign_up') }}">
                             <div class="row">
+                                <!--First Name-->
                                 <div class="input-field col s12 m6">
                                     <i class="material-icons prefix">face</i>
-                                    <input id="name" type="text" class="validate" name="name" pattern="^[a-zA-Z]{3,20}$" required>
+                                    <input id="name" type="text" class="validate" name="name" pattern="^[a-zA-Z]{3,20}$"
+                                        required>
                                     <label for="name">First Name</label>
                                 </div>
+                                <!--Username-->
                                 <div class="input-field col s12 m6">
                                     <i class="material-icons prefix">account_circle</i>
-                                    <input id="new_username" type="text" class="validate" name="new_username" pattern="^[a-zA-Z0-9]{3,20}$" required>
+                                    <input id="new_username" type="text" class="validate" name="new_username"
+                                        pattern="^[a-zA-Z0-9]{3,20}$" required>
                                     <label for="new_username">Username</label>
                                 </div>
                             </div>
+                            <!--Email-->
                             <div class="row">
                                 <div class="input-field col s12 m6">
                                     <i class="material-icons prefix">email</i>
                                     <input id="email" type="email" class="validate" name="email" required>
                                     <label for="email">Email Address</label>
                                 </div>
+                                <!--Password-->
                                 <div class="input-field col s12 m6">
                                     <i class="material-icons prefix">lock_open</i>
-                                    <input id="new_password" type="password" class="validate" name="new_password" pattern="^[a-zA-Z0-9]{3,20}$" required>
+                                    <input id="new_password" type="password" class="validate" name="new_password"
+                                        pattern="^[a-zA-Z0-9]{3,20}$" required>
                                     <label for="new_password">Password</label>
                                 </div>
                             </div>
-                           <div class="center">
-                    <button class="btn waves-effect waves-light submit-button" type="submit" name="sign_up">Sign Up
-                        <i class="material-icons right">send</i>
-                    </button>
-                </div>
+                            <div class="center">
+                                <button class="btn waves-effect waves-light submit-button" type="submit"
+                                    name="sign_up">Sign Up
+                                    <i class="material-icons right">send</i>
+                                </button>
+                            </div>
                         </form>
                     </div>
                 </div>
-                
             </div>
         </div>
     </div>
     <br class="margin-bottom">
 </div>
-
 {% endblock %}
