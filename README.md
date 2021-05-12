@@ -37,151 +37,121 @@ With the week menu shuffle, in just one click, you solved a huge everyday proble
 ## Wireframes
 
 ![Index html mobile](/static/img/wireframes/index-html-mobile.png "index html mobile")
+![Index html](/static/img/wireframes/Index-html.png "index html")
+![Recipe one mobile](/static/img/wireframes/recipe-one-mobile.png "recipe one mobile")
+![Recipe one](/static/img/wireframes/recipe-one.png "recipe one")
+The desktop site did not need two pictures, because asking two pictures from a user was excessive. 
+![Search mobile](/static/img/wireframes/search.png "search mobile")
+![search](/static/img/wireframes/search-big.png "search")
+(I decided not to make a carousel for the search button because the site was already quite busy as is. It would have been overkill for the senses 
+to add a carousel for seach items.)
+![Sign up mobile](/static/img/wireframes/sign-up-mobile.png "sign up mobile")
+![Sign up](/static/img/wireframes/sign-up.png "sign up")
 
 
+## Features
 
-Features
-The game features three overlays and the main page.
+The colorful site features a heading picture on every main page and:
 
-Overlay "seconds" is the first thing a player sees when visiting the site. This overlay is a black and white gif of a woman's knees, lifting up her skirt above them and placing the skirt back down as well. The title is How Naughty is your memory? And under that, you can select the number of seconds that you would like to complete the game. When you click on the play icon, the overlay closes.
+ - **Index** page, with three aggregated recipes from the database and a link to the week-menu-shuffle feature
+ - **Week Menu Shuffle** page, where a dropdown with flags of all countries of the world lets the user select 
+ a country of choice, and then aggregates seven recipes from that country from the database (if that many recipes are avaliable- for the moment only Italy has seven recipes in the db)
+ - **Recipes** page with all recipes displayed of the db, and a search field where the user can search in the data base in recipy name, ingredients, discription and country
+ - **Recipe** page where a recipe is readable in it's entirety. If the user is the creator of the recipy, it is also possible to edit or delete it
+ - **Sign Up** page where the user can sign up providing a first name, username, password and email address
+ - **Log In** page where an existing user can log in
+ - **Profile** page where the logged in user can see their recipes and edit their name, password, email address or delete the profile and all recipes
+ - **Add recipe** page where the user can add a recipe to the database
 
-Index.html page features a memory game of 30 cards, a countdown of the seconds that the player chose, and a counter of flips. The cards flip on click and display a drawing of a pin-up, they are paired - when the player finds two the same they stay 'open'. This lasts until all cards are flipped, on which the "victory" overlay is activated, or the countdown finishes, and the "lost" overlay is displayed.
+### _Features to implement in the future:_
 
-"Victory" overlay displays a black and white gif of a sexy moving Dita von Teese and the text: Victory, enjoy your Teese. After 6 seconds the overlay changes automatically to the "seconds" overlay.
+Oh so may, so many. 
 
-"Lost" overlay displays a black and white gif of a stern-looking woman, with the text: Oh no! You lost. After 6 seconds the overlay changes automatically to the "seconds" overlay.
+- forgotten password reset 
+- recipe ratings
+- recipe comments
+- search on best rated recipes
+- week menu shuffle does not only take the country in consideration, but also the ingredients. Like this economic shopping is possible
+- auto generated shopping list for your week menu
+- categorizing recipes by meal, amount of calories, time to prepare etc
+- users can follow interesing users 
 
-Features to implement in the future:
+And actually the options are endless! It would be fun to create a social recipe site, where blog posts and pretty pictures by the users 
+would make it a fun place to browse even when you are not cooking. Foodporn all day every day! The more time users spend on the site, more money ads would make.
+All of this was a bit beyond the scope of learning these basics, but if i have time i would gladly continue to shape this. 
+I miss somethink like this in my life.
 
-The game could be improved by making the player choose the number of cards as well
-Adding more games with the same theme to choose from
-etc
-Technologies used
-Gitpod to develop the website
-GitHub to deploy the website
-Google fonts for the old fashioned font
-Html, Css and JavaScript are the developing languages
-moqups.com for the wireframes
-lambdatest.com for static testing
-Chrome dev tools for manual testing
-Testing
-Testing information can be found in the TESTING.md file
+## Technologies used
+- Gitpod to develop the website
+- GitHub for version control and code hosting
+- Heroku for deployment
+- MongoDB as database
+- Google fonts for the fonts
+- Plugin CountrySelect for the country dropdown
+- Html, Css, JavaScript and Python are the developing languages
+- Frameworks: Flask for templates, Materialize for CSS, JQery for JavaScript
+- Balsamiq for the wireframes
+- lambdatest.com for static testing
+- Chrome dev tools for manual testing
 
-Deployment
-The game is deployed through GitHub.
+## Testing
+Testing information can be found in the [TESTING.md](TESTING.md "Testing") file
 
-Steps to setup GitHub deployment:
+## Deployment
+The site is deployed through Heroku.
 
-Go to your project's Code & Deploys page, in the Repository tab.
-Click the CONNECT TO GITHUB button to connect your project with GitHub.
-Connect to one of your GitHub repositories.
-Configure the deploy options.
-Deploy your project. (as described by https://support.zyte.com/)
-This is what I did. The configuration is on auto, which means that the repository will get updated if I push something from the connected GitPod dev area. The site is now live at https://annakovesdi.github.io/milestone-project-2/
+Steps to setup Heroku deployment:
 
-You can clone a repository from GitHub to your local computer to make it easier to fix merge conflicts, add or remove files, and push larger commits. When you clone a repository, you copy the repository from GitHub to your local machine.
+- The Heroku Command Line Interface (CLI) makes it easy to create and manage Heroku apps directly from the terminal. 
+It’s an essential part of using Heroku and requires Git, the popular version control system. If you don’t already have Git installed, complete the following before installing the CLI: 
+[Git Installation](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git), [First-time Git setup](https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup).
 
-Cloning a repository pulls down a full copy of all the repository data that GitHub has at that point in time, including all versions of every file and folder for the project. You can push your changes to the remote repository on GitHub, or pull other people's changes from GitHub. How to do this is described dtep by step at https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository
+- [Install the CLI according to your OS](https://devcenter.heroku.com/articles/heroku-cli#download-and-install)
+For macOS this is **$ brew tap heroku/brew && brew install heroku**
 
-Credits
-While starting to try to tackle Javascript I recreated two youtube tutorials in their entirety. These tutorials are:
+- To verify your CLI installation, use the heroku --version command
 
-Memory Card Game - JavaScript Tutorial (https://www.youtube.com/watch?v=ZniVgo8U7ek&t=4s) by FreeCodeCamp.org
-and
+- Create a profile in the Heroku app in your browser
 
-How To Code A Card Game In Plain JavaScript - Spooky Halloween Edition (https://www.youtube.com/watch?v=3uuQ3g92oPQ&t=2637s) by PortEXE
-I relied heavily on these resources to write my code. I am sure a lot of the logic of the tutorials is completely integrated into my project. I watched them so often, I can recite them in my sleep. It was very hard to get a hang of Javascript for me but I have to say that I really start to "get" it, finally, and am planning to practice A LOT.
-Towards the end, the code was flowing, and I could solve issues by myself (i got the help of tutors before that). I tried to credit my code where appropiate. I hope you understand that it is not that clear: I try to refrain from copy pasting code in it's entirety. I change things as I go along. The credit is there, sometimes almost the same, sometimes more as the inspiring and teaching scource from where it started.
+- After you install the CLI, run the heroku login command. You’ll be prompted to enter any key to go to your web browser to complete login. The CLI will then log you in automatically.
+ 
+- Now you’re ready to create your first Heroku app. This app is called eatingtheworld and is created with the preferred language Python
 
-The memory card game tutorials were my beacon the darkness, my lighthouse in a stormy sea, my refuge from a desperate stackoverflow wormhole. I can not credit them enough for helping me forward and making this game.
+- In the settings of the Heroku app in the browser Config vars are added, they change the way your app behaves. They are for eatingtheworld IP, The name and uri of the database, port and a secret key.
 
-To get a hang of the subject I did:
+- Under the Deply tab of the Heroku app in the browser it is possible to connect a GitHub Repository to the Heroku app, and automatically deploy from the main branch. In this case every push to main will deploy a new version of this app. 
+Deploys happen automatically: be sure that this branch in GitHub is always in a deployable state and any tests have passed before you push. 
 
-The entire Javascript coding chapter of FreeCodeCamp
-and deep-dived into their video tutorial (https://www.youtube.com/watch?v=PkZNo7MFNFg)
-read the book "A smarter way to learn Javascript" by Mark Myers
-I have to credit all of these for finally getting there, where I needed to be in my understanding of this language.
+- Before automatically deploying the app through GitHub make sure to create a Procfile. Heroku apps include a Procfile that specifies the commands that are executed by the app on startup. You can use a Procfile to declare a variety of process types, 
+including: your app’s web server, multiple types of worker processes, a singleton process, such as a clock or tasks to run before a new release is deployed
+Each dyno in your app belongs to one of the declared process types, and it executes the startup command associated with that process type. The Procfile is always a simple text file that is named Procfile without a file extension. [Click to know more about the Procfile](https://devcenter.heroku.com/articles/procfile)
 
-GIFs and pictures
-The credit for the gifs goes to GIPHY.
+- Before automatically deploying the app through GitHub make sure to create a requirements.txt file by typeing $ pip freeze > requirements.txt. In short,
+ we generate and share requirements.txt files to make it easier for other developers to install the correct versions of the required Python libraries (or “packages”) to run the Python code we’ve written. To
+ install the required files just run $ pip install -r requirements.txt in your terminal. [Click for more information on requirements.txt](https://blog.usejournal.com/why-and-how-to-make-a-requirements-txt-f329c685181e)
 
-Woman Legs GIF for "seconds" overlay https://giphy.com/gifs/woman-legs-2j5Jj6bjfNJLy
-Black And White Brooks GIF for "lost" overlay https://giphy.com/gifs/brooks-louise-736he3qcXJhwQ
-Oh Dita Take Me Now GIF for "victory" overlay https://giphy.com/gifs/dita-von-teese-oh-take-me-now-p09nbHVNTYn6
-The credit of the drawn images on the cards goes to AnnaliseArt on Pixabay.com
+- Be sure to create a .gitignore file that hides sensitive information from deployment. Always check with $ git status that your sensitive files are not pushed to GitHub and Heroku. A gitignore file specifies intentionally untracked files that Git should ignore.
+[Click to read more about .gitignore](https://git-scm.com/docs/gitignore)
 
-To deploy the site, i started right at the beginning by installing flask and 
+- Be sure to change debug=True to debug=False in your python file before deployment. 
 
+The site is now live at https://eatingtheworld.herokuapp.com/
 
+## Credits
 
-ref:
-https://pymongo.readthedocs.io/en/stable/tutorial.html
-https://jinja.palletsprojects.com/en/2.11.x/templates/#filters
-https://materializecss.com/
+Most of the credits this learning season go to Code Institute. By reviewing the mini projects I created alot of this site. 
+Ofcourse there were lots of other helpers too. They are listed here in no particular order.
 
-defensive strategies
-
-problems: 
-did not show image. put url instead of image_url and it did not render correctly.
-could not insert new user, wrong name tags in html
-
-recipe url no special characters allowed, spaces replaced with -, lower
-
-@app.route("/api/recipes")
-def api_recipes():
-    recipes = mongo.db.recipes.find()
-    print(recipes)
-    return jsonify(recipes=recipes)
-
-replace recipy for recipe
-tutor Tim
-shuffle = [recipe for recipe in mongo.db.YourCollectionName.aggregate([{"$sample": {"size": 7}}])]    
-
-https://stackoverflow.com/questions/10290621/how-do-i-partially-update-an-object-in-mongodb-so-the-new-object-will-overlay answer Eran Medan
-How to update only some fields
-
-to do: 
--*week menu shuffle
--add 10 recp. per country
--*value in stars option? No
--*list ingredients!
-=*cancel button @ add recipe, and edit profile, and edit password
--*search function @ recipes page
--*pop up before deleting recipy or profile
-*-ingredients field big enough for text (textarea)
-*-log out when deleting profile (bug) 
--*delete all recipes of profile?
--*backend defensive programming
-=*change url to slug
--write readme
+- Read the book "A smarter way to learn Python" by Mark Myers
+- Documentation [Flask](https://flask.palletsprojects.com/en/2.0.x/)
+- Documentation [Materialize](https://materializecss.com/)
+- Tutorial [PyMongo](https://pymongo.readthedocs.io/en/stable/tutorial.html)
+- [Jinja](https://jinja.palletsprojects.com/en/2.11.x/templates/#filters) stuff
+- Tutor Tim for helping me with the aggregate 3 recipes on index.html
+- Tutor Igor for helping me create the code in Python for "week_menu" (and getting there from "week_menu_shuffle" by tutor Jo)
+- Mentor Victor for explaining how to make sure a user is logged in
+- Countryselect Plugin created by the amazing mrmarkfrench from https://www.jqueryscript.net/form/country-picker-flags.html
 
 
-recipes = mongo.db.recipes.find({"country": country})
-    shuffle = [
-        recipe for recipe in recipes.aggregate(
-            [{"$sample": {"size": 7}}])]
+### Pictures
 
-@app.route("/week_menu/<country>")
-def week_menu(country):
-    this_country = {}
-    countries = mongo.db.recipes.find(
-            {"country": request.form.get("country")})
-    for item in countries:
-        if item["country"] == country:
-            this_country = item
-    return render_template("week-menu.html", country=this_country,
-                           page_title="Your {} Week Menu".format(
-                               request.form.get("country")))
-
-
-
--autocomplete for search
--url to slug in profile bug
--could not build route from delete recipe and delete profile-could not build route from cancel buttons (url slug bug)
--delete recipe 
--check flash styling
--already extisting username sign in sign up could not build route 
-
--remove session cookie when deleteing profile
-
--bug to fix: mobile friendly alert message

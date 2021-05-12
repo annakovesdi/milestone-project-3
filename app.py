@@ -116,6 +116,9 @@ def edit_recipe(recipe_id):
 # Delete recipe from db
 @app.route("/delete_recipe/<recipe_id>")
 def delete_recipe(recipe_id):
+    if 'user' not in session:
+        flash("Please log in")
+        return redirect(url_for("log_in"))
     mongo.db.recipes.remove({"_id": ObjectId(recipe_id)})
     flash("recipe deleted")
     return redirect(url_for('recipes', _external=True, _scheme='https'))
@@ -200,6 +203,9 @@ def profile(username):
 # edit profile information in db
 @app.route("/edit_profile/<user_id>", methods=["GET", "POST"])
 def edit_profile(user_id):
+    if 'user' not in session:
+        flash("Please log in")
+        return redirect(url_for("log_in"))
     if request.method == "POST":
         edited_profile = {
             "$set":
@@ -220,6 +226,9 @@ def edit_profile(user_id):
 # edit password
 @app.route("/edit_password/<user_id>", methods=["GET", "POST"])
 def edit_password(user_id):
+    if 'user' not in session:
+        flash("Please log in")
+        return redirect(url_for("log_in"))
     if request.method == "POST":
         edited_password = {
             "$set":
@@ -237,6 +246,9 @@ def edit_password(user_id):
 # delete profile and all user recipes
 @app.route("/delete_profile/<user_id>")
 def delete_profile(user_id):
+    if 'user' not in session:
+        flash("Please log in")
+        return redirect(url_for("log_in"))
     mongo.db.users.remove({"_id": ObjectId(user_id)})
     mongo.db.recipes.remove({"created_by": session["user"]})
     flash("User deleted")
@@ -269,4 +281,4 @@ def week_menu(country):
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
-            debug=True)
+            debug=False)
