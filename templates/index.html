@@ -35,4 +35,21 @@
             {% endfor %}
         </div>
     </section>
-{% endblock %}
+    <hr class="index-hr">
+<!--Week Menu Shuffle card-->
+<div class="row">
+    <div class="col center shuffle-card">
+      <div class="card">
+        <div class="card-content center">
+          <span><h2 class="red-color shuffle-card-title">No Inspiration?</h2></span>
+        </div>
+        <div class="card-content">
+            <p>Or too many choices to make a decision? Use the 
+                <div><a href="{{url_for('week_menu_shuffle')}}" class="shuffle-card-link">Week menu Shuffle</a></div>
+            to generate a weekly meal plan, for free! Get to know exciting foreign tastes and spice up quarantine life, or just relax your 
+            overworked brain by letting the computer make the decision for you. </p>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}  
