@@ -24,6 +24,7 @@ Ideally the visitor is equally interested to share their own recipes and thus co
 8. As a user, i would like to edit or delete my recipe.
 9. As a user, i would like to delete my profile and all my recipes. 
 10. As a true enthausiast, i would like the site to create a country themed week menu for me.
+11. As a user, i want to log out
 
 Visitors find the experience they are searching for because:
 
@@ -60,6 +61,7 @@ The colorful site features a heading picture on every main page and:
  - **Recipe** page where a recipe is readable in it's entirety. If the user is the creator of the recipy, it is also possible to edit or delete it
  - **Sign Up** page where the user can sign up providing a first name, username, password and email address
  - **Log In** page where an existing user can log in
+ - **Log Out** When clicked a logged in user logs out
  - **Profile** page where the logged in user can see their recipes and edit their name, password, email address or delete the profile and all recipes
  - **Add recipe** page where the user can add a recipe to the database
 
@@ -67,14 +69,17 @@ The colorful site features a heading picture on every main page and:
 
 Oh so may, so many. 
 
+- allow tracking cookies alert
 - forgotten password reset 
+- automatic email welcoming the new user
 - recipe ratings
 - recipe comments
+- autofill on search field with only words that occur in the database
 - search on best rated recipes
 - week menu shuffle does not only take the country in consideration, but also the ingredients. Like this economic shopping is possible
 - auto generated shopping list for your week menu
 - categorizing recipes by meal, amount of calories, time to prepare etc
-- users can follow interesing users 
+- users can follow interesing users
 
 And actually the options are endless! It would be fun to create a social recipe site, where blog posts and pretty pictures by the users 
 would make it a fun place to browse even when you are not cooking. Foodporn all day every day! The more time users spend on the site, more money ads would make.
@@ -151,7 +156,18 @@ Ofcourse there were lots of other helpers too. They are listed here in no partic
 - Tutor Igor for helping me create the code in Python for "week_menu" (and getting there from "week_menu_shuffle" by tutor Jo)
 - Mentor Victor for explaining how to make sure a user is logged in
 - Countryselect Plugin created by the amazing mrmarkfrench from https://www.jqueryscript.net/form/country-picker-flags.html
+- How to check if the search had no results (https://www.geeksforgeeks.org/how-to-check-if-the-pymongo-cursor-is-empty/)
+- How to partially update in DB How to partially update in db https://stackoverflow.com/questions/10290621/how-do-i-partially-update-an-object-in-mongodb-so-the-new-object-will-overlay answer Eran Medan
 
 
-### Pictures
+### Header Images
 
+All header images are credited to [Unsplash](https://unsplash.com/). The names of the photographers are: 
+- paprika.jpg Heijo Reinl
+- bread.jpg Ken Lawrence
+- citrus.jpg Luke Michael
+- basic.jpg Dan Gold
+- veggie.jpg Sven Scheuermeier
+- market.jpg Julian Hanslmaier
+- fruit.jpg Roman Davayposmotrim
+- pepper.jpg webvilla

@@ -200,7 +200,7 @@ def profile(username):
         "profile.html", user=user, user_recipes=user_recipes)
 
 
-# edit profile information in db
+# edit profile information in db: How to partially update in db https://stackoverflow.com/questions/10290621/how-do-i-partially-update-an-object-in-mongodb-so-the-new-object-will-overlay answer Eran Medan
 @app.route("/edit_profile/<user_id>", methods=["GET", "POST"])
 def edit_profile(user_id):
     if 'user' not in session:
