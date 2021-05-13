@@ -65,6 +65,9 @@ def recipe_page(recipe_name):
 # Add recipe to db
 @app.route("/add_recipe", methods=["GET", "POST"])
 def add_recipe():
+    if 'user' not in session:
+        flash("Please log in")
+        return redirect(url_for("log_in"))
     if request.method == "POST":
         recipe = {
             "recipe_name": request.form.get("recipe_name"),
@@ -270,7 +273,6 @@ def week_menu_shuffle():
 # ...and display 7 aggregated recipes on week-menu page: Igor, Tutor
 @app.route("/week_menu/<country>")
 def week_menu(country):
-    print(country)
     recipes = [
         recipe for recipe in mongo.db.recipes.aggregate(
             [{"$match": {"country": country}}, {"$sample": {"size": 7}}])]
